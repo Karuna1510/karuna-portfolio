@@ -20,7 +20,7 @@ export default function Footer() {
           
           <div className="text-sm text-muted-foreground">
             <p>&copy; {new Date().getFullYear()} Karuna Guglani. All rights reserved.</p>
-            <p className="mt-1"> Software Engineer | UI/UX Enthusiast</p>
+            <p className="mt-1"> Software Engineer</p>
           </div>
           
           {/* Animated decorative elements */}

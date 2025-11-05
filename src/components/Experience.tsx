@@ -4,52 +4,50 @@ import { Building, Calendar, MapPin } from 'lucide-react';
 const experiences = [
   {
     company: 'RoundCircle Technologies',
-    position: 'Senior Frontend Developer',
-    period: '2024 – Present',
-    location: 'Remote',
+    position: 'Senior Software Developer',
+    period: 'May 2024 – Present',
+    location: 'Remote from Canada',
     projects: [
-      'Marketing CoPilot SDK — Created a lightweight SDK with AI integration, enabling seamless adoption across multiple platforms. Integrated chat features that generate graphs, along with reports and pricing card visualizations.',
-     'Customizable Customer Dashboard — Built dashboards that let users personalize the SDK, add data, define goals, manage leads, and track progress with real-time analytics and interactive visualizations, along with email, LinkedIn, and call integrations.',
-     'LLM-Powered Chat Application — Developed a conversational interface for B2C product discovery, that works as a plug and play SDK for all your SASS queries,enabling natural language search and improved customer engagement.',
-     'Wyzard.ai (SaaS Tool) — Designed and implemented a platform for procurement and subscription management, featuring analytics dashboards, usage insights, and graphical reporting.'
+      'Marketing CoPilot Web SDK — Built a lightweight SDK with AI integration using React and Next.js. Bundled with Rollup (UMD) for universal compatibility, improving load performance by 30%. Used Shadow DOM and CSS Modules for isolation, integrated chat that generates graphs, reports, and pricing cards, followed semantic release practices, and optimized bundle size. Deployed via AWS S3 and CloudFront achieving 99.9% uptime.',
+      'Customer Dashboard — Enabled users to customize their live SDK and connect a knowledge base. Added tools for data ingestion, goal definition, AI-powered email sequence generation, campaign editing, lead management, and real-time analytics. Integrated email/LinkedIn/call workflows; connected HubSpot and Salesforce; integrated Factor.ai and Lusha for enrichment, resulting in 30% faster lead qualification and syncing.',
+      'APIs & Flow Builder — Developed RESTful APIs in Java for setup, onboarding, and analytics exchange. Engineered a dynamic flow builder with React Flow to visually manage complex workflows.',
+      'Mobile App — Shipped production-ready features in a React Native app with polished UI from Figma designs and seamless API integration.',
+      'Deployment & DevOps — Deployed and scaled dashboard services on Azure using CI/CD pipelines for rapid, reliable releases.',
+      'Wyzard.ai — Spearheaded frontend architecture using React and Next.js for a SaaS management and procurement tool. Built interactive data visualizations with Tailwind CSS and implemented secure workflows for licenses, subscriptions, contracts, and payments with a document vault, reducing manual effort by 30%.',
+      'B2C SaaS Chatbot — Implemented WebSocket-based real-time communication across frontend (React) and backend (Spring Boot) to power discovery, instant recommendations, and automation.'
     ],
-    technologies: [ 'React',
-  'Next.js',
-  'JavaScript',
-  'Node.js',
-  'Data Visualization ',
-  'GraphQL',
-  'Azure',
-  'AWS',
-  'GCP']
+    technologies: [
+      'React', 'Next.js', 'TypeScript', 'JavaScript', 'Rollup', 'Shadow DOM', 'CSS Modules', 'React Flow', 'React Native', 'Java', 'Spring Boot', 'Azure', 'AWS', 'CloudFront', 'Tailwind CSS', 'WebSocket', 'Jest', 'React Testing Library', 'HubSpot', 'Salesforce', 'Factor.ai', 'Lusha'
+    ]
   },
   {
     company: 'EXL Service',
     position: 'Senior Software Developer',
-    period: '2023 – 2024',
-    location: 'Gurugram, India',
+    period: 'July 2023 – May 2024',
+    location: 'Gurugram, Haryana, India',
     projects: [
-      'Generative AI Solutions — Created AI-powered applications for enterprise clients, including synthetic data generation, chatbots, and compliance tools, improving automation and business insights.',
-      'Full-Stack Applications — Built scalable applications with seamless frontend-backend integration, delivering intuitive and high-performing user experiences.',
-      'Interactive Dashboards & Reusable Components — Developed dashboards and reusable components that allowed users to manage workflows, track data, and visualize analytics, reducing development time across projects.',
-      'Performance & Scalability Enhancements — Identified bottlenecks and optimized systems to ensure smooth, reliable, and responsive application performance.',
-      'End-to-End Product Delivery — Led projects from design through deployment, translating complex requirements into functional solutions that met user needs and business objectives.'
+      'Generative AI Solutions — Led implementation of generative AI across synthetic data generation, enterprise chatbots, and compliance/governance applications.',
+      'Full-Stack Development — Built robust, scalable solutions with React frontends and Python backends.',
+      'UI/UX & Frontend Architecture — Converted Figma designs to production UIs; delivered a new React-based frontend architecture with reusable, user-friendly components.',
+      'Reusable Component Library — Created a component library that reduced development time for new projects by 40%.',
+      'Performance & Scalability — Improved response times by 30% and optimized system efficiency and reliability.',
+      'React Native Prototypes — Built scalable React Native prototypes extending web platforms to mobile.'
     ],
-    technologies: ['React', 'TypeScript','Python', 'Component Libraries', 'Performance Optimization']
+    technologies: ['React', 'TypeScript', 'Python', 'React Native', 'Component Libraries', 'Performance Optimization', 'Figma']
   },
   {
     company: 'JIO Platforms Limited',
-    position: 'Software Engineer',
-    period: '2019 – 2023',
-    location: 'Mumbai, India',
+    position: 'Software Developer',
+    period: 'Aug 2019 – July 2023',
+    location: 'Mumbai, Maharashtra, India',
     projects: [
-      'People’s First App — Led development of a comprehensive HR and payroll application serving 200,000+ users, including features for attendance tracking, payslip access, booking meeting rooms, and managing daily employee activities. Enabled seamless workforce management and improved operational efficiency.',
-      'HR & Workforce Management Solutions — Directed creation of solutions for Reliance Retail, including a COVID-19 shift planning system that reduced planning time by 50% and assignment errors by 30%, and an end-to-end HR management platform for job posting, candidate interviews, and talent acquisition.',
-      'Universal UI Component Repository — Developed a standardized UI component library for enterprise applications, streamlining development and reducing recruiter workload by 75% through automation and reusable components.',
-      'End-to-End Vendor Hiring Application — Built a complete vendor hiring platform with automated workflows, collaborating closely with design teams to ensure consistent, user-friendly interfaces.',
-      'Complex HR Solutions & Integrations — Delivered applications handling complex business logic, data integrations, and enterprise-scale user interactions, improving overall system reliability and user experience.'
+      'People’s First App — Led cross-functional teams to deliver Reliance’s enterprise HR and payroll app serving 200,000+ users (attendance, payroll, meeting rooms, daily activities) using Angular and Node.js.',
+      'HR & Workforce Management — Built COVID-19 shift planning for Reliance Retail (reduced planning time by 50% and errors by 30%) and an end-to-end HR platform for job posting, interviews, and talent acquisition.',
+      'UI Component Standardization & Automation — Pioneered a universal UI components repository and automation, reducing recruiter workload by 75%.',
+      'Vendor Hiring Application — Built an end-to-end vendor hiring solution with React and Node.js, collaborating closely with design for coherence.',
+      'Frontend Performance Tuning — Implemented lazy loading, code splitting, and caching, improving load times by 35% across devices. Architected reusable Angular component libraries to standardize UI across applications.'
     ],
-    technologies: ['Angular',  'TypeScript','Spring Boot', 'MongoDB', 'Enterprise Architecture', 'UI Libraries']
+    technologies: ['Angular', 'TypeScript', 'Node.js', 'Enterprise Architecture', 'UI Libraries', 'Performance Optimization']
   }
 ];
 
@@ -73,7 +71,7 @@ export default function Experience() {
           </p>
         </motion.div>
 
-        <div className="relative">P
+        <div className="relative">
           {/* Timeline line */}
           <div className="absolute left-4 md:left-1/2 transform md:-translate-x-1/2 top-0 bottom-0 w-0.5 bg-gradient-primary"></div>
           

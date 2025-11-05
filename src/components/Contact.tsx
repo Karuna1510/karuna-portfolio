@@ -21,7 +21,7 @@ const contactInfo = [
   {
     icon: MapPin,
     label: 'Location',
-    value: 'Ontario,Canada',
+    value: 'Toronto, Ontario, Canada',
     href: null
   }
 ];
@@ -83,7 +83,7 @@ export default function Contact() {
             <div>
               <h3 className="text-2xl font-bold text-primary mb-6">Get In Touch</h3>
               <p className="text-muted-foreground mb-8 leading-relaxed">
-                Whether you're looking for a frontend developer, need consultation on your project, 
+                Whether you're looking for a frontend developer or a full stack developer, need consultation on your project, 
                 or just want to say hello, I'm here to help. Let's build something exceptional together.
               </p>
             </div>

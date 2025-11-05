@@ -5,33 +5,33 @@ import { Button } from '@/components/ui/button';
 const projects = [
   {
     title: 'Marketing CoPilot SDK',
-    description: 'Led development of a lightweight, AI-powered Web SDK enabling seamless integration across platforms. Features chat-driven generation of graphs, reports, and pricing visualizations, built with Rollup (UMD) for compatibility, Shadow DOM and CSS Modules for isolated styling, optimized for performance, and deployed via AWS S3 and CloudFront.',
-    tech: ['TypeScript', 'Rollup', 'Shadow DOM', 'AI Integration', 'SDK Development', 'AWS', 'CSS Modules'],
-    highlights: ['Lightweight footprint', 'AI-powered analytics', 'Fast load times'],
+    description: 'Lightweight, AI-powered Web SDK using React/Next.js with chat-driven graphs, reports, and pricing cards. Bundled with Rollup (UMD) for universal compatibility, uses Shadow DOM and CSS Modules for isolation, follows semantic release, optimized for minimal bundle size, and deployed to AWS S3 + CloudFront (99.9% uptime).',
+    tech: ['React', 'Next.js', 'TypeScript', 'Rollup', 'Shadow DOM', 'AI Integration', 'AWS', 'CloudFront', 'CSS Modules', 'Semantic Release'],
+    highlights: ['30% faster load performance', '99.9% uptime', 'Lightweight & framework-agnostic'],
     icon: Zap,
     gradient: 'from-primary to-secondary'
   },
   {
     title: 'Copilot Customer Dashboard',
-    description: 'Developed a comprehensive customer analytics dashboard with React and TypeScript. Enabled users to customize SDKs, manage campaigns, track leads, and visualize data with AI-powered insights. Integrated workflows across email, LinkedIn, and calls, and deployed on Azure with CI/CD pipelines.',
-    tech: ['React', 'TypeScript', 'React Flow', 'Data Visualization', 'API Integration', 'Azure'],
-    highlights: ['Real-time insights', 'Interactive dashboards', 'AI recommendations'],
+    description: 'Customer dashboard to customize live SDKs and connect knowledge bases. Tools for data ingestion, goal setup, AI-generated email sequences, campaign editing, lead management, and real-time analytics. Integrated email/LinkedIn/call workflows, HubSpot and Salesforce CRMs, Factor.ai and Lusha for enrichment; RESTful APIs in Java; React Flow builder; features shipped to React Native app; deployed on Azure via CI/CD.',
+    tech: ['React', 'TypeScript', 'React Flow', 'Java', 'REST APIs', 'Data Visualization', 'Azure', 'CI/CD', 'React Native', 'HubSpot', 'Salesforce', 'Factor.ai', 'Lusha'],
+    highlights: ['30% faster lead qualification', 'Real-time analytics', 'End-to-end engagement'],
     icon: Database,
     gradient: 'from-secondary to-accent'
   },
   {
     title: 'B2C SaaS Chatbot',
-    description: 'Developed a real-time, AI-powered B2C chatbot enabling personalized user engagement and support. Implemented WebSocket-based streaming for instant responses, interactive dashboards for monitoring conversations, and AI-generated graphs, reports, and pricing cards. Built with React, Node.js, and Python, integrating NLP, real-time analytics, and cloud deployment for scalability.',
-    tech: ['React', 'Node.js', 'Python', 'WebSocket', 'AI/NLP', 'Data Visualization', 'Cloud Deployment', 'Real-time Analytics'],
+    description: 'Real-time, AI-powered chatbot for B2C discovery and recommendations. WebSocket streaming for instant responses, interactive dashboards, AI-generated graphs, reports, and pricing cards. Frontend in React; backend in Spring Boot; integrates NLP, real-time analytics, and cloud deployment.',
+    tech: ['React', 'Spring Boot', 'WebSocket', 'AI/NLP', 'Data Visualization', 'Cloud Deployment', 'Real-time Analytics'],
     highlights: ['Real-time engagement', 'AI-powered insights', 'Interactive dashboards', 'Scalable architecture'],
     icon: Cloud,
     gradient: 'from-accent to-primary'
   },
   {
     title: 'Wyzard.ai SaaS Tool',
-    description: 'Built a procurement and subscription management platform using React and Next.js, enabling enterprise clients to manage licenses, subscriptions, contracts, and payments efficiently. Integrated interactive data visualizations and a secure document vault.',
-    tech: ['React', 'Next.js', 'TypeScript', 'SaaS Architecture', 'Enterprise'],
-    highlights: ['Enterprise-grade', 'Interactive visualizations', 'Secure workflows'],
+    description: 'SaaS management and procurement platform built from the ground up. React + Next.js frontend architecture, interactive visualizations with Tailwind CSS, secure workflows for licenses, subscriptions, contracts, and payments, plus a centralized document vault.',
+    tech: ['React', 'Next.js', 'TypeScript', 'Tailwind CSS', 'SaaS Architecture', 'Payments'],
+    highlights: ['30% manual effort reduction', 'Secure workflows', 'Responsive UI'],
     icon: Database,
     gradient: 'from-secondary to-accent'
   },

@@ -64,8 +64,8 @@ I design and build digital experiences that feel effortless, scale with ambition
                 asChild
               >
                 <a 
-                  href="/FinalResume.pdf" 
-                  download="FinalResume.pdf"
+                  href="/KarunaDeveloper.pdf" 
+                  download="Karuna_Guglani_Resume.pdf"
                 >
                   <ExternalLink className="mr-2 h-5 w-5" />
                   Resume

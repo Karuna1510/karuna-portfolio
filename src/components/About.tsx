@@ -34,7 +34,7 @@ export default function About() {
             className="space-y-6"
           >
             <h3 className="text-2xl md:text-3xl font-semibold text-primary">
-            Forntend Focused Full-Stack   <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent font-bold">Developer</span> and a little bit of <span className="bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent font-bold">everything</span>
+             Full-Stack   <span className="bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent font-bold">Developer</span> and a little bit of <span className="bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent font-bold">everything</span>
             </h3>
             
             <p className="text-md text-muted-foreground leading-relaxed">

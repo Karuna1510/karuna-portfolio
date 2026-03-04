@@ -45,7 +45,7 @@ const skillCategories = [
   {
     title: 'Testing Framework',
     icon: TestTube,
-    skills: ['Jest', 'Cypress', 'React Testing Library'],
+    skills: ['Jest', 'Cypress', 'Playwright', 'React Testing Library'],
     color: 'accent'
   }
 ];

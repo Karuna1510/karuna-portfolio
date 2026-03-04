@@ -31,7 +31,7 @@ Follow these steps to run the project locally:
 git clone <YOUR_GIT_URL>
 
 # Step 2: Navigate to the project directory
-cd karuna-3d-canvas
+cd karuna-portfolio
 
 # Step 3: Install dependencies
 npm install

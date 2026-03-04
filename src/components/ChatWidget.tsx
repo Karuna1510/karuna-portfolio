@@ -15,7 +15,7 @@ interface Message {
 const staticReplies: Record<string, string> = {
   'hello': "Hi there! I'm Karuna's assistant. How can I help you today?",
   'hi': "Hello! I'm here to help you learn more about Karuna. What would you like to know?",
-  'experience': "Karuna has 7+ years of experience as a Senior Software Developer, specializing in React, Angular, and full-stack development. Currently contributing remotely to RoundCircle Technologies, a Gurugram-based company.",
+  'experience': "Karuna has 7+ years of experience as a Senior Software Developer, specializing in React, Angular, and full-stack development. Currently at Intuit (Toronto) working on Mailchimp dotcom—building high-traffic customer-facing experiences, A/B testing, INP optimization, and Playwright E2E testing.",
   'skills': "Karuna is proficient in React,TypeScript, JavaScript, Angular, Node.js, , Python, AWS and many other technologies. Check out the skills section for the complete list!",
   'projects': "Karuna has worked on various projects including web applications, e-commerce platforms, and enterprise solutions. You can see featured projects in the portfolio section.",
   'contact': "You can reach Karuna at karunaguglani15@gmail.com or connect on LinkedIn. She's available for remote work opportunities.",

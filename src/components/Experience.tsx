@@ -3,9 +3,26 @@ import { Building, Calendar, MapPin } from 'lucide-react';
 
 const experiences = [
   {
+    company: 'Intuit',
+    position: 'Senior Software Developer (Full-Time Contract)',
+    period: 'Dec 2025 – Present',
+    location: 'Toronto, ON, Canada',
+    projects: [
+      'Mailchimp dotcom development — Built and enhanced high-traffic, customer-facing experiences on the Mailchimp dotcom website using React, JavaScript, and SCSS, with increasing adoption of TypeScript to improve type safety and maintainability.',
+      'Experimentation and A/B testing — Developed and shipped experiments to validate product and UX hypotheses, enabling data-driven optimization of user journeys and conversion flows.',
+      'Frontend architecture and optimization — Contributed to modernizing frontend components and improving site performance by optimizing rendering efficiency, code structure, and alignment with Mailchimp\'s design system and engineering standards.',
+      'Mobile performance and INP optimization — Improved mobile web responsiveness by identifying and resolving Interaction to Next Paint (INP) bottlenecks, enhancing overall user experience on mobile devices.',
+      'Automated testing — Implemented and maintained end-to-end test coverage using Playwright, ensuring reliability of critical user journeys and reducing regressions across frequent releases.',
+      'Engineering collaboration — Partnered closely with product managers, designers, and engineers to deliver production-ready features, participate in code reviews, and uphold high-quality engineering practices.'
+    ],
+    technologies: [
+      'React', 'JavaScript', 'TypeScript', 'SCSS', 'Playwright', 'A/B Testing', 'INP Optimization', 'Design Systems', 'E2E Testing'
+    ]
+  },
+  {
     company: 'RoundCircle Technologies',
     position: 'Senior Software Developer',
-    period: 'May 2024 – Present',
+    period: 'May 2024 – Nov 2025',
     location: 'Remote from Canada',
     projects: [
       'Marketing CoPilot Web SDK — Built a lightweight SDK with AI integration using React and Next.js. Bundled with Rollup (UMD) for universal compatibility, improving load performance by 30%. Used Shadow DOM and CSS Modules for isolation, integrated chat that generates graphs, reports, and pricing cards, followed semantic release practices, and optimized bundle size. Deployed via AWS S3 and CloudFront achieving 99.9% uptime.',

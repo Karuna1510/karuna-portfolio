@@ -2,8 +2,7 @@ import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { ChevronRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-
-const heroImage = `${import.meta.env.BASE_URL}images/avatar-hero.png`;
+import heroImage from '@/assets/avatar-hero.png';
 
 const letters = [
   { char: 'K', term: 'Keyframes',     desc: 'CSS animations & motion',      symbol: '◇' },

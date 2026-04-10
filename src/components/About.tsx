@@ -3,8 +3,7 @@ import { motion, useInView } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { ChevronRight, ArrowUpRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-
-const avatarSrc = `${import.meta.env.BASE_URL}images/avatar-about.png`;
+import avatarSrc from '@/assets/avatar-about.png';
 
 const HEADLINE_LINE1 = 'Senior Full Stack Developer';
 const HEADLINE_LINE2A = 'with 7+ years building at ';

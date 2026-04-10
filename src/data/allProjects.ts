@@ -39,7 +39,7 @@ export const allProjectsFull: FullProject[] = [
   },
   {
     id: 'marketing-copilot-sdk',
-    categoryLabel: 'AI SDK',
+    categoryLabel: 'AI Powered Chatbot',
     headlineMetrics: [
       { label: 'Load performance', value: '+30%' },
       { label: 'Uptime', value: '99.9%' },
@@ -98,7 +98,7 @@ export const allProjectsFull: FullProject[] = [
   },
   {
     id: 'b2c-saas-chatbot',
-    categoryLabel: 'B2C CHAT',
+    categoryLabel: 'B2C MULTI CHAT',
     headlineMetrics: [
       { label: 'Engagement', value: 'Real-time' },
       { label: 'Architecture', value: 'Scalable' },

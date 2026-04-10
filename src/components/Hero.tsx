@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { ChevronRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import heroImage from '@/assets/avatar-hero.png';
+import { playFlipSound } from '@/lib/flipSound';
 
 const letters = [
   { char: 'K', term: 'Keyframes',     desc: 'CSS animations & motion',      symbol: '◇' },
@@ -27,6 +28,7 @@ function FlipLetter({ char, term, desc, symbol, delay }: {
         width: 'clamp(2.4rem, 8.5vw, 7rem)',
         height: 'clamp(3.2rem, 12vw, 10rem)',
       }}
+      onPointerEnter={() => playFlipSound()}
     >
       <div
         className="relative w-full h-full transition-transform duration-500 ease-in-out group-hover:[transform:rotateY(180deg)]"

@@ -6,15 +6,15 @@ import { Button } from '@/components/ui/button';
 import avatarSrc from '@/assets/avatar-about.png';
 
 const HEADLINE_LINE1 = 'Senior Full Stack Developer';
-const HEADLINE_LINE2A = 'with 7+ years building at ';
-const HEADLINE_LINE2B = 'scale.';
+const HEADLINE_LINE2_PREFIX = 'with 7+ years crafting enterprise experiences ';
+const HEADLINE_LINE2_ITALIC = 'that scale.';
+const HEADLINE_LINE2 = HEADLINE_LINE2_PREFIX + HEADLINE_LINE2_ITALIC;
 
 function AboutTypingHeadline() {
   const ref = useRef<HTMLHeadingElement>(null);
   const isInView = useInView(ref, { once: true, amount: 0.35 });
   const [line1, setLine1] = useState('');
-  const [line2a, setLine2a] = useState('');
-  const [line2b, setLine2b] = useState('');
+  const [line2, setLine2] = useState('');
   const [showCaret, setShowCaret] = useState(true);
 
   useEffect(() => {
@@ -27,8 +27,7 @@ function AboutTypingHeadline() {
         typeof window !== 'undefined' && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
       if (reduced) {
         setLine1(HEADLINE_LINE1);
-        setLine2a(HEADLINE_LINE2A);
-        setLine2b(HEADLINE_LINE2B);
+        setLine2(HEADLINE_LINE2);
         return;
       }
       for (let i = 0; i <= HEADLINE_LINE1.length; i++) {
@@ -36,14 +35,9 @@ function AboutTypingHeadline() {
         setLine1(HEADLINE_LINE1.slice(0, i));
         await new Promise((r) => setTimeout(r, ms));
       }
-      for (let i = 0; i <= HEADLINE_LINE2A.length; i++) {
+      for (let i = 0; i <= HEADLINE_LINE2.length; i++) {
         if (cancelled) return;
-        setLine2a(HEADLINE_LINE2A.slice(0, i));
-        await new Promise((r) => setTimeout(r, ms));
-      }
-      for (let i = 0; i <= HEADLINE_LINE2B.length; i++) {
-        if (cancelled) return;
-        setLine2b(HEADLINE_LINE2B.slice(0, i));
+        setLine2(HEADLINE_LINE2.slice(0, i));
         await new Promise((r) => setTimeout(r, ms));
       }
     };
@@ -55,10 +49,11 @@ function AboutTypingHeadline() {
   }, [isInView]);
 
   const line1Done = line1.length === HEADLINE_LINE1.length;
-  const done =
-    line1Done &&
-    line2a.length === HEADLINE_LINE2A.length &&
-    line2b.length === HEADLINE_LINE2B.length;
+  const done = line1Done && line2.length === HEADLINE_LINE2.length;
+
+  const prefixLen = HEADLINE_LINE2_PREFIX.length;
+  const line2Plain = line2.slice(0, Math.min(line2.length, prefixLen));
+  const line2Italic = line2.slice(prefixLen);
 
   useEffect(() => {
     if (done) return;
@@ -82,11 +77,11 @@ function AboutTypingHeadline() {
         {line1}
         {!line1Done && <Caret />}
       </span>
-      <span className="mt-1.5 md:mt-2 block min-h-[1.35em]">
+      <span className="  block min-h-[1.35em] text-balance">
         {line1Done ? (
           <>
-            {line2a}
-            <span className="italic">{line2b}</span>
+            {line2Plain}
+            <span className="italic">{line2Italic}</span>
             {!done && <Caret />}
           </>
         ) : null}
@@ -193,7 +188,7 @@ export default function About() {
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
             viewport={{ once: true }}
-            className="space-y-6 pt-24 md:pt-32 lg:pt-36 pb-4 md:pb-6 text-left"
+            className="space-y-6 pt-24 md:pt-32 lg:pt-24 pb-4 md:pb-6 text-left"
           >
             <AboutTypingHeadline />
 

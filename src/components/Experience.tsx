@@ -160,8 +160,7 @@ export default function Experience() {
             >
               <p className="mb-4 text-[10px] font-medium uppercase tracking-[0.28em] text-white/45">About</p>
               <h1 className="font-bungee text-4xl tracking-wide text-white md:text-5xl lg:text-[3.25rem] lg:leading-[1.15]">
-                7+ years crafting enterprise experiences that scale
-              </h1>
+                7+ years developing at scale.</h1>
             </motion.div>
 
             <motion.div

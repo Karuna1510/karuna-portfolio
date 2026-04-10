@@ -1,13 +1,29 @@
 import { motion } from 'framer-motion';
-import { ArrowUpRight, Zap, Database, Cloud, Users } from 'lucide-react';
+import { Link } from 'react-router-dom';
+import { ArrowRight, Mail, Zap, Cloud, Users } from 'lucide-react';
 
 const projects = [
   {
     number: '01',
+    title: 'Mailchimp.com',
+    category: 'Marketing Website • Intuit',
+    role: 'Senior Software Developer',
+    description:
+      'Built and enhanced high-traffic, customer-facing experiences on mailchimp.com with React, JavaScript, and SCSS, with growing TypeScript adoption—plus experimentation, INP optimization, and Playwright E2E coverage.',
+    metrics: [
+      { label: 'Experimentation', value: 'A/B & INP' },
+      { label: 'Quality', value: 'Playwright E2E' },
+    ],
+    tech: ['React', 'TypeScript', 'JavaScript', 'SCSS', 'Playwright'],
+    icon: Mail,
+  },
+  {
+    number: '02',
     title: 'Marketing CoPilot SDK',
-    category: 'AI SDK • 2024',
+    category: 'AI powered SDK • Wyzard.ai',
     role: 'Lead Developer, Frontend Architecture',
-    description: 'Lightweight AI-powered Web SDK with chat-driven graphs, reports, and pricing cards. Shadow DOM isolation, semantic release, AWS deployment.',
+    description:
+      'Lightweight AI-powered Web SDK with chat-driven graphs, reports, and pricing cards. Shadow DOM isolation, semantic release, AWS deployment.',
     metrics: [
       { label: 'Load Performance', value: '+30%' },
       { label: 'Uptime', value: '99.9%' },
@@ -16,24 +32,12 @@ const projects = [
     icon: Zap,
   },
   {
-    number: '02',
-    title: 'Customer Dashboard & CRM',
-    category: 'SaaS Platform • 2024',
-    role: 'Lead Developer, Full Stack',
-    description: 'Dashboard for SDK customization, knowledge base, AI email sequences, lead management. Integrated HubSpot, Salesforce, Factor.ai.',
-    metrics: [
-      { label: 'Lead Qualification', value: '+30%' },
-      { label: 'CRM Integrations', value: '4+' },
-    ],
-    tech: ['React', 'TypeScript', 'React Flow', 'Java', 'Azure'],
-    icon: Database,
-  },
-  {
     number: '03',
-    title: 'Wyzard.ai SaaS Platform',
-    category: 'SaaS • 2024',
+    title: 'SaaS Platform',
+    category: 'SaaS • Wyzard.ai',
     role: 'Lead Developer, Frontend Architecture',
-    description: 'SaaS management and procurement platform with secure workflows for licenses, subscriptions, contracts, and payments with document vault.',
+    description:
+      'SaaS management and procurement platform with secure workflows for licenses, subscriptions, contracts, and payments with document vault.',
     metrics: [
       { label: 'Manual Effort', value: '-30%' },
       { label: 'Workflows', value: 'Automated' },
@@ -44,9 +48,10 @@ const projects = [
   {
     number: '04',
     title: "People's First App",
-    category: 'Enterprise • 2019-2023',
+    category: 'Enterprise • JIO Platforms Limited',
     role: 'Developer, Team Lead',
-    description: "Reliance's enterprise HR and payroll platform serving 200K+ users — attendance, payroll, shift planning, and hiring automation.",
+    description:
+      "Reliance's enterprise HR and payroll platform serving 200K+ users — attendance, payroll, shift planning, and hiring automation.",
     metrics: [
       { label: 'Users Served', value: '200K+' },
       { label: 'Load Time', value: '-35%' },
@@ -58,28 +63,44 @@ const projects = [
 
 export default function Projects() {
   return (
-    <section id="projects" className="section-padding bg-background relative">
-      <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-primary/20 to-transparent" />
+    <section
+      id="projects"
+      className="relative overflow-hidden bg-[#12121a] pt-10 pb-20 md:pt-12 md:pb-28"
+    >
+      <div
+        className="pointer-events-none absolute inset-0 opacity-[0.06]"
+        style={{
+          backgroundImage:
+            'linear-gradient(hsl(195 100% 50% / 0.4) 1px, transparent 1px), linear-gradient(90deg, hsl(195 100% 50% / 0.4) 1px, transparent 1px)',
+          backgroundSize: 'var(--cyber-grid-cell) var(--cyber-grid-cell)',
+        }}
+      />
 
-      <div className="container-custom">
+      <div className="relative z-10 container-custom px-4 md:px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
           viewport={{ once: true }}
-          className="flex flex-col md:flex-row md:items-end justify-between mb-16"
+          className="mb-16 max-w-2xl"
         >
-          <div>
-            <span className="text-xs tracking-[0.3em] uppercase text-muted-foreground font-mono mb-4 block">
-              Featured Projects
-            </span>
-            <h2 className="text-4xl md:text-5xl font-bold text-foreground">
-              Selected Work
-            </h2>
-          </div>
-          <p className="text-sm text-muted-foreground max-w-md mt-4 md:mt-0">
+          <span className="mb-3 block text-[10px] font-medium uppercase tracking-[0.28em] text-white/45">
+            Featured Projects
+          </span>
+          <h2 className="text-3xl font-bold tracking-tight text-white md:text-4xl lg:text-5xl">Selected Work</h2>
+          <p className="mt-4 text-base leading-relaxed text-white/55 md:text-lg">
             Projects spanning enterprise apps, AI-powered SDKs, and SaaS platforms.
           </p>
+          <Link
+            to="/projects"
+            className="group mt-3 inline-flex items-center gap-1.5 text-sm font-medium tracking-wide text-white/45 transition-colors hover:text-primary"
+          >
+            All Projects
+            <ArrowRight
+              className="h-4 w-4 shrink-0 transition-transform duration-200 group-hover:translate-x-0.5"
+              aria-hidden
+            />
+          </Link>
         </motion.div>
 
         <div className="space-y-6">
@@ -93,41 +114,38 @@ export default function Projects() {
               className="group"
             >
               <div className="cyber-card p-6 md:p-8">
-                <div className="flex flex-col lg:flex-row lg:items-start gap-6">
-                  {/* Left — number and title */}
-                  <div className="flex-1">
-                    <div className="flex items-start gap-4 mb-4">
-                      <span className="text-3xl font-black text-foreground/10 font-mono leading-none">
+                <div className="flex flex-col gap-6 lg:flex-row lg:items-start">
+                  <div className="min-w-0 flex-1">
+                    <div className="mb-4 flex items-start gap-4">
+                      <span className="font-mono text-3xl font-black leading-none text-foreground/10">
                         {project.number}
                       </span>
                       <div>
-                        <h3 className="text-xl font-bold text-foreground group-hover:text-primary transition-colors">
+                        <h3 className="text-xl font-bold text-foreground transition-colors group-hover:text-primary">
                           {project.title}
                         </h3>
-                        <p className="text-xs font-mono text-muted-foreground mt-1">
-                          {project.category}
-                        </p>
-                        <p className="text-xs text-secondary mt-1">
-                          {project.role}
-                        </p>
+                        <p className="mt-1 font-mono text-xs text-muted-foreground">{project.category}</p>
+                        <p className="mt-1 text-xs text-secondary">{project.role}</p>
                       </div>
                     </div>
-                    <p className="text-sm text-muted-foreground leading-relaxed mb-4">
-                      {project.description}
-                    </p>
-                    <div className="flex flex-wrap gap-2">
+                    <p className="text-sm leading-relaxed text-muted-foreground">{project.description}</p>
+                    <div className="mt-4 flex flex-wrap gap-2">
                       {project.tech.map((t) => (
-                        <span key={t} className="px-2 py-0.5 text-xs bg-muted text-muted-foreground rounded border border-border font-mono">
+                        <span
+                          key={t}
+                          className="rounded border border-border bg-muted px-2 py-0.5 font-mono text-xs text-muted-foreground"
+                        >
                           {t}
                         </span>
                       ))}
                     </div>
                   </div>
-
-                  {/* Right — metrics */}
-                  <div className="flex lg:flex-col gap-4 lg:gap-3 lg:min-w-[160px]">
+                  <div className="flex gap-3 sm:gap-4 lg:min-w-[180px] lg:flex-col lg:gap-3">
                     {project.metrics.map((metric) => (
-                      <div key={metric.label} className="bg-muted/50 rounded-lg p-3 border border-border flex-1 lg:flex-none">
+                      <div
+                        key={metric.label}
+                        className="flex-1 rounded-lg border border-border bg-muted/50 p-3 lg:flex-none"
+                      >
                         <p className="text-lg font-bold text-primary">{metric.value}</p>
                         <p className="text-xs text-muted-foreground">{metric.label}</p>
                       </div>

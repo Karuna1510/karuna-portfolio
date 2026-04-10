@@ -1,19 +1,35 @@
 import { useState, useEffect } from 'react';
+import { Link, useLocation } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { Menu, X } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import { cn } from '@/lib/utils';
 
 const navItems = [
-  { name: 'HOME', href: '#' },
-  { name: 'PROJECTS', href: '#projects' },
-  { name: 'SKILLS', href: '#skills' },
-  { name: 'EXPERIENCE', href: '#experience' },
-  { name: 'CONTACT', href: '#contact' },
-];
+  { name: 'HOME', to: '/' },
+  { name: 'PROJECTS', to: '/projects' },
+  { name: 'SKILLS', to: '/skills' },
+  { name: 'EXPERIENCE', to: '/experience' },
+  { name: 'CONTACT', to: '/contact' },
+] as const;
+
+function navLinkClass(active: boolean) {
+  return cn(
+    'text-xs tracking-[0.15em] transition-colors font-medium border-b-2 pb-0.5',
+    active ? 'border-primary text-foreground' : 'border-transparent text-muted-foreground hover:text-foreground',
+  );
+}
 
 export default function Navigation() {
+  const location = useLocation();
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+
+  const isRouteActive = (to: string) => {
+    if (to === '/') return location.pathname === '/';
+    if (to.startsWith('/#')) return false;
+    return location.pathname === to;
+  };
 
   useEffect(() => {
     const handleScroll = () => setIsScrolled(window.scrollY > 50);
@@ -28,33 +44,34 @@ export default function Navigation() {
         animate={{ y: 0 }}
         transition={{ duration: 0.5 }}
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-          isScrolled 
-            ? 'bg-background/90 backdrop-blur-xl border-b border-border/50' 
+          isScrolled
+            ? 'bg-background/90 backdrop-blur-xl border-b border-border/50'
             : 'bg-transparent'
         }`}
       >
         <div className="container-custom px-4 py-4">
           <div className="flex items-center justify-between">
-            <motion.a
-              href="#"
-              className="text-xl font-black tracking-tight text-foreground"
-              whileHover={{ scale: 1.05 }}
-            >
-              KARUNA<span className="text-primary">.</span>
-            </motion.a>
+            <motion.div whileHover={{ scale: 1.1 }}>
+              <Link
+                to="/"
+                className="flex h-10 w-10 items-center justify-center rounded-full border border-white/20 bg-white/5 text-[9px] font-bold tracking-widest text-amber-300/90"
+              >
+                KG
+              </Link>
+            </motion.div>
 
             <div className="hidden md:flex items-center gap-8">
               {navItems.map((item, index) => (
-                <motion.a
+                <motion.div
                   key={item.name}
-                  href={item.href}
                   initial={{ opacity: 0, y: -10 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: index * 0.1 }}
-                  className="text-xs tracking-[0.15em] text-muted-foreground hover:text-foreground transition-colors font-medium"
                 >
-                  {item.name}
-                </motion.a>
+                  <Link to={item.to} className={navLinkClass(isRouteActive(item.to))}>
+                    {item.name}
+                  </Link>
+                </motion.div>
               ))}
             </div>
 
@@ -78,14 +95,14 @@ export default function Navigation() {
         >
           <div className="container-custom px-4 py-4 space-y-3">
             {navItems.map((item) => (
-              <a
+              <Link
                 key={item.name}
-                href={item.href}
+                to={item.to}
                 onClick={() => setIsMobileMenuOpen(false)}
-                className="block text-xs tracking-[0.15em] text-muted-foreground hover:text-foreground transition-colors py-2"
+                className={cn('block py-2', navLinkClass(isRouteActive(item.to)))}
               >
                 {item.name}
-              </a>
+              </Link>
             ))}
           </div>
         </motion.div>

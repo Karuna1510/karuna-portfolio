@@ -48,6 +48,9 @@
     --cyber-dark: 240 10% 3.9%;
     --cyber-darker: 240 10% 1%;
     --cyber-light: 240 5% 96%;
+
+    /* Cyan grid overlay (Projects, Process, Skills, Contact, Experience hero) */
+    --cyber-grid-cell: 24px;
     
     /* Gradients */
     --gradient-primary: linear-gradient(135deg, hsl(195 100% 50%), hsl(258 90% 66%));
@@ -68,10 +71,12 @@
 @layer base {
   * {
     @apply border-border;
+    cursor: none !important;
   }
 
   body {
     @apply bg-background text-foreground overflow-x-hidden;
+    cursor: none;
     font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
     /* Ensure consistent rendering across browsers */
     -webkit-font-smoothing: antialiased;
@@ -144,6 +149,30 @@
     pointer-events: auto !important;
   }
   
+  @keyframes shimmer {
+    0%   { background-position: -250% 0, 0 0; }
+    100% { background-position: 250% 0, 0 0; }
+  }
+
+  @keyframes footer-marquee {
+    from {
+      transform: translate3d(0, 0, 0);
+    }
+    to {
+      transform: translate3d(-50%, 0, 0);
+    }
+  }
+
+  .footer-marquee-track {
+    display: flex;
+    width: max-content;
+    animation: footer-marquee 70s linear infinite;
+  }
+
+  .footer-marquee-track:hover {
+    animation-play-state: paused;
+  }
+
   .chat-widget-window {
     position: fixed !important;
     bottom: 96px !important;

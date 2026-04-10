@@ -1,160 +1,286 @@
 import { motion } from 'framer-motion';
-import { Building, Calendar, MapPin, ChevronRight } from 'lucide-react';
-import { useState } from 'react';
+import { Link } from 'react-router-dom';
+import { Check, ArrowUpRight } from 'lucide-react';
+import { Button } from '@/components/ui/button';
+
+const heroBullets = [
+  'High-traffic customer-facing products , shipping iteratively with measurable experimentation and a strong focus on quality.',
+  'Shipped platforms and client SDKs on cloud infrastructure with strong uptime and performance discipline.',
+  'Enterprise-scale impact , including applications serving 200K+ users and automation that reduced manual effort.',
+];
 
 const experiences = [
   {
     company: 'Intuit',
     position: 'Senior Software Developer',
     period: 'Dec 2025 – Present',
-    location: 'Toronto, ON',
-    summary: 'Building high-traffic customer-facing experiences on Mailchimp dotcom with React, TypeScript, A/B testing, INP optimization, and Playwright E2E testing.',
+    location: 'Toronto, ON, Canada',
+    summary:
+      'Building and enhancing mailchimp.com — high-traffic customer experiences with React, JavaScript, and SCSS, growing TypeScript adoption, plus experimentation, INP work, and Playwright E2E coverage.',
+    quote:
+      'Shipping experiments, performance improvements, and reliable releases on surfaces where data-driven optimization and quality matter every day.',
     highlights: [
-      'Mailchimp dotcom — high-traffic customer-facing React experiences',
-      'A/B testing and experimentation for data-driven optimization',
-      'Mobile INP optimization for better responsiveness',
-      'Playwright E2E testing for critical user journeys',
+      'mailchimp.com development — Built and enhanced high-traffic, customer-facing experiences on the mailchimp.com website using React, JavaScript, and SCSS, with increasing adoption of TypeScript to improve type safety and maintainability.',
+      'Experimentation and A/B testing — Developed and shipped experiments to validate product and UX hypotheses, enabling data-driven optimization of user journeys and conversion flows.',
+      'Frontend architecture and optimization — Contributed to modernizing frontend components and improving site performance by optimizing rendering efficiency, code structure, and alignment with Mailchimp\'s design system and engineering standards.',
+      'Mobile performance and INP optimization — Improved mobile web responsiveness by identifying and resolving Interaction to Next Paint (INP) bottlenecks, enhancing overall user experience on mobile devices.',
+      'Automated testing — Implemented and maintained end-to-end test coverage using Playwright, ensuring reliability of critical user journeys and reducing regressions across frequent releases.',
+      'Engineering collaboration — Partnered closely with product managers, designers, and engineers to deliver production-ready features, participate in code reviews, and uphold high-quality engineering practices.',
     ],
-    tech: ['React', 'TypeScript', 'SCSS', 'Playwright', 'A/B Testing'],
+    tech: [
+      'React',
+      'JavaScript',
+      'TypeScript',
+      'SCSS',
+      'Playwright',
+      'A/B Testing',
+      'INP Optimization',
+      'Design Systems',
+      'E2E Testing',
+    ],
   },
   {
-    company: 'RoundCircle Technologies',
+    company: 'Wyzard.ai - RoundCircle Technologies',
     position: 'Senior Software Developer',
     period: 'May 2024 – Nov 2025',
-    location: 'Remote, Canada',
-    summary: 'Built AI-powered SDKs, customer dashboards, and SaaS platforms. Deployed to AWS/Azure with 99.9% uptime.',
+    location: 'Remote from Canada',
+    summary:
+      'Built AI-powered SDKs, customer dashboards, SaaS products, and real-time chat — from Rollup bundles and Shadow DOM to Azure/AWS deployments and React Native delivery.',
+    quote:
+      'End-to-end ownership across SDKs, dashboards, APIs, mobile, and DevOps — shipping measurable gains in load time, uptime, and team efficiency.',
     highlights: [
-      'Marketing CoPilot SDK — 30% faster load, 99.9% uptime',
-      'Customer Dashboard with HubSpot/Salesforce integration',
-      'Dynamic flow builder with React Flow',
-      'Wyzard.ai SaaS platform — 30% manual effort reduction',
+      'Marketing CoPilot Web SDK — Built a lightweight SDK with AI integration using React and Next.js. Bundled with Rollup (UMD) for universal compatibility, improving load performance by 30%. Used Shadow DOM and CSS Modules for isolation, integrated chat that generates graphs, reports, and pricing cards, followed semantic release practices, and optimized bundle size. Deployed via AWS S3 and CloudFront achieving 99.9% uptime.',
+      'Customer Dashboard — Enabled users to customize their live SDK and connect a knowledge base. Added tools for data ingestion, goal definition, AI-powered email sequence generation, campaign editing, lead management, and real-time analytics. Integrated email/LinkedIn/call workflows; connected HubSpot and Salesforce; integrated Factor.ai and Lusha for enrichment, resulting in 30% faster lead qualification and syncing.',
+      'APIs & Flow Builder — Developed RESTful APIs in Java for setup, onboarding, and analytics exchange. Engineered a dynamic flow builder with React Flow to visually manage complex workflows.',
+      'Mobile App — Shipped production-ready features in a React Native app with polished UI from Figma designs and seamless API integration.',
+      'Deployment & DevOps — Deployed and scaled dashboard services on Azure using CI/CD pipelines for rapid, reliable releases.',
+      'Wyzard.ai — Spearheaded frontend architecture using React and Next.js for a SaaS management and procurement tool. Built interactive data visualizations with Tailwind CSS and implemented secure workflows for licenses, subscriptions, contracts, and payments with a document vault, reducing manual effort by 30%.',
+      'B2C SaaS Chatbot — Implemented WebSocket-based real-time communication across frontend (React) and backend (Spring Boot) to power discovery, instant recommendations, and automation.',
     ],
-    tech: ['React', 'Next.js', 'TypeScript', 'AWS', 'Azure', 'React Flow'],
+    tech: [
+      'React',
+      'Next.js',
+      'TypeScript',
+      'JavaScript',
+      'Rollup',
+      'Shadow DOM',
+      'CSS Modules',
+      'React Flow',
+      'React Native',
+      'Java',
+      'Spring Boot',
+      'Azure',
+      'AWS',
+      'CloudFront',
+      'Tailwind CSS',
+      'WebSocket',
+      'Jest',
+      'React Testing Library',
+      'HubSpot',
+      'Salesforce',
+      'Factor.ai',
+      'Lusha',
+    ],
   },
   {
     company: 'EXL Service',
     position: 'Senior Software Developer',
     period: 'July 2023 – May 2024',
-    location: 'Gurugram, India',
-    summary: 'Led generative AI implementation across enterprise applications. Created reusable component library reducing dev time by 40%.',
+    location: 'Gurugram, Haryana, India',
+    summary:
+      'Led generative AI initiatives and full-stack delivery — React frontends, Python backends, reusable UI, and measurable performance gains.',
+    quote:
+      'Bridging generative AI, design systems, and performance so enterprise teams could ship faster with fewer defects.',
     highlights: [
-      'Generative AI — chatbots, synthetic data, compliance tools',
-      'Reusable component library — 40% faster development',
-      'Performance optimization — 30% faster response times',
-      'React Native prototypes for mobile extension',
+      'Generative AI Solutions — Led implementation of generative AI across synthetic data generation, enterprise chatbots, and compliance/governance applications.',
+      'Full-Stack Development — Built robust, scalable solutions with React frontends and Python backends.',
+      'UI/UX & Frontend Architecture — Converted Figma designs to production UIs; delivered a new React-based frontend architecture with reusable, user-friendly components.',
+      'Reusable Component Library — Created a component library that reduced development time for new projects by 40%.',
+      'Performance & Scalability — Improved response times by 30% and optimized system efficiency and reliability.',
+      'React Native Prototypes — Built scalable React Native prototypes extending web platforms to mobile.',
     ],
-    tech: ['React', 'TypeScript', 'Python', 'React Native', 'AI/ML'],
+    tech: [
+      'React',
+      'TypeScript',
+      'Python',
+      'React Native',
+      'Component Libraries',
+      'Performance Optimization',
+      'Figma',
+    ],
   },
   {
-    company: 'JIO Platforms',
+    company: 'JIO Platforms Limited',
     position: 'Software Developer',
     period: 'Aug 2019 – July 2023',
-    location: 'Mumbai, India',
-    summary: "Led development of Reliance's enterprise HR app serving 200K+ users. Built shift planning, hiring automation, and UI component libraries.",
+    location: 'Mumbai, Maharashtra, India',
+    summary:
+      "Led delivery of Reliance's enterprise HR and workforce products — Angular, Node.js, and large-scale UI standards serving 200,000+ users.",
+    quote:
+      'Owning HR, hiring, and performance-critical flows where reliability, speed, and consistent UX mattered at national scale.',
     highlights: [
-      "People's First App — 200K+ users, attendance & payroll",
-      'COVID-19 shift planning — 50% faster, 30% fewer errors',
-      'UI component standardization — 75% less recruiter workload',
-      'Performance tuning — 35% faster load times',
+      'People’s First App — Led cross-functional teams to deliver Reliance\'s enterprise HR and payroll app serving 200,000+ users (attendance, payroll, meeting rooms, daily activities) using Angular and Node.js.',
+      'HR & Workforce Management — Built COVID-19 shift planning for Reliance Retail (reduced planning time by 50% and errors by 30%) and an end-to-end HR platform for job posting, interviews, and talent acquisition.',
+      'UI Component Standardization & Automation — Pioneered a universal UI components repository and automation, reducing recruiter workload by 75%.',
+      'Vendor Hiring Application — Built an end-to-end vendor hiring solution with React and Node.js, collaborating closely with design for coherence.',
+      'Frontend Performance Tuning — Implemented lazy loading, code splitting, and caching, improving load times by 35% across devices. Architected reusable Angular component libraries to standardize UI across applications.',
     ],
-    tech: ['Angular', 'TypeScript', 'Node.js', 'Enterprise Architecture'],
+    tech: [
+      'Angular',
+      'TypeScript',
+      'Node.js',
+      'Enterprise Architecture',
+      'UI Libraries',
+      'Performance Optimization',
+    ],
   },
 ];
 
 export default function Experience() {
-  const [expandedIndex, setExpandedIndex] = useState<number | null>(null);
-
   return (
-    <section id="experience" className="section-padding bg-background relative">
-      <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-secondary/20 to-transparent" />
+    <>
+      {/* Hero — dark grid + headline + intro */}
+      <section className="relative overflow-hidden bg-[#0c0c0e]">
+        <div
+          className="pointer-events-none absolute inset-0 opacity-[0.06]"
+          style={{
+            backgroundImage:
+              'linear-gradient(hsl(195 100% 50% / 0.35) 1px, transparent 1px), linear-gradient(90deg, hsl(195 100% 50% / 0.35) 1px, transparent 1px)',
+            backgroundSize: 'var(--cyber-grid-cell) var(--cyber-grid-cell)',
+          }}
+        />
+        <div className="pointer-events-none absolute left-1/2 top-[40%] h-[min(420px,55vw)] w-[min(520px,90vw)] -translate-x-1/2 -translate-y-1/2 rounded-full bg-primary/25 blur-[100px]" />
 
-      <div className="container-custom">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          viewport={{ once: true }}
-          className="text-center mb-16"
-        >
-          <span className="text-xs tracking-[0.3em] uppercase text-muted-foreground font-mono mb-4 block">
-            The Journey
-          </span>
-          <h2 className="text-4xl md:text-5xl font-bold text-foreground">
-            Experience
-          </h2>
-        </motion.div>
-
-        <div className="max-w-4xl mx-auto space-y-4">
-          {experiences.map((exp, index) => (
+        <div className="relative mx-auto max-w-6xl px-6 pb-16 pt-28 md:pb-24 md:pt-32">
+          <div className="grid items-start gap-12 lg:grid-cols-2 lg:gap-20">
             <motion.div
-              key={index}
               initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
-              viewport={{ once: true }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.55 }}
             >
-              <div
-                className="cyber-card p-6 cursor-pointer group"
-                onClick={() => setExpandedIndex(expandedIndex === index ? null : index)}
-              >
-                {/* Header */}
-                <div className="flex flex-col sm:flex-row sm:items-center justify-between mb-3">
-                  <div>
-                    <div className="flex items-center gap-3 mb-1">
-                      <span className="text-xs font-mono text-primary">{String(index + 1).padStart(2, '0')}</span>
-                      <h3 className="text-lg font-bold text-foreground group-hover:text-primary transition-colors">
-                        {exp.position}
-                      </h3>
-                    </div>
-                    <div className="flex items-center gap-4 text-sm text-muted-foreground">
-                      <span className="flex items-center gap-1">
-                        <Building className="w-3.5 h-3.5" />
-                        {exp.company}
-                      </span>
-                      <span className="flex items-center gap-1">
-                        <MapPin className="w-3.5 h-3.5" />
-                        {exp.location}
-                      </span>
-                    </div>
-                  </div>
-                  <div className="flex items-center gap-2 mt-2 sm:mt-0">
-                    <span className="text-xs font-mono text-muted-foreground">{exp.period}</span>
-                    <ChevronRight className={`w-4 h-4 text-muted-foreground transition-transform ${expandedIndex === index ? 'rotate-90' : ''}`} />
-                  </div>
+              <p className="mb-4 text-[10px] font-medium uppercase tracking-[0.28em] text-white/45">About</p>
+              <h1 className="font-bungee text-4xl tracking-wide text-white md:text-5xl lg:text-[3.25rem] lg:leading-[1.15]">
+                7+ years building at scale
+              </h1>
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.55, delay: 0.08 }}
+              className="space-y-6"
+            >
+              <div className="flex items-start gap-3">
+                <div className="mt-1 flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-white/20 bg-white/5">
+                  <span className="h-1.5 w-1.5 rounded-full bg-primary" />
                 </div>
+                <p className="text-sm leading-relaxed text-white/65 md:text-base">
+                  Senior Software Developer focused on enterprise and high-traffic web products , from design systems
+                  and performance to AI-assisted workflows and cloud delivery.
+                </p>
+              </div>
+              <ul className="space-y-4">
+                {heroBullets.map((line) => (
+                  <li key={line} className="flex gap-3 text-sm text-white/70 md:text-[15px]">
+                    <Check className="mt-0.5 h-5 w-5 shrink-0 text-primary" strokeWidth={2.5} />
+                    <span className="leading-relaxed">{line}</span>
+                  </li>
+                ))}
+              </ul>
+              <Button
+                variant="cyber"
+                size="lg"
+                className="rounded-lg gap-2 text-sm font-semibold uppercase tracking-wide px-6 h-11 shadow-lg shadow-primary/25"
+                asChild
+              >
+                <Link to="/contact">
+                  Get in touch
+                  <ArrowUpRight className="h-4 w-4" strokeWidth={2.5} />
+                </Link>
+              </Button>
+            </motion.div>
+          </div>
+        </div>
+      </section>
 
-                <p className="text-sm text-muted-foreground mb-3">{exp.summary}</p>
+      {/* Timeline — light band */}
+      <section id="experience" className="bg-[#eeeee9] text-zinc-900">
+        <div className="mx-auto max-w-6xl px-6 py-16 md:py-24">
+          <motion.div
+            initial={{ opacity: 0, y: 12 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
+            className="mb-14 flex items-center gap-4 md:mb-20"
+          >
+            <p className="shrink-0 text-[10px] font-medium uppercase tracking-[0.28em] text-zinc-500">Experience</p>
+            <div className="h-px flex-1 bg-zinc-300/90" />
+          </motion.div>
 
-                {/* Expanded content */}
-                <motion.div
-                  initial={false}
-                  animate={{ height: expandedIndex === index ? 'auto' : 0, opacity: expandedIndex === index ? 1 : 0 }}
-                  transition={{ duration: 0.3 }}
-                  className="overflow-hidden"
-                >
-                  <div className="pt-4 border-t border-border space-y-3">
-                    <ul className="space-y-2">
-                      {exp.highlights.map((h, i) => (
-                        <li key={i} className="flex items-start gap-2 text-sm text-muted-foreground">
-                          <span className="w-1 h-1 rounded-full bg-primary mt-2 flex-shrink-0" />
+          <div className="space-y-0">
+            {experiences.map((exp, index) => (
+              <motion.article
+                key={`${exp.company}-${exp.period}`}
+                initial={{ opacity: 0, y: 16 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: '-40px' }}
+                transition={{ duration: 0.45, delay: index * 0.05 }}
+                className="border-b border-zinc-300/90 py-14 first:pt-0 last:border-b-0 md:py-16"
+              >
+                <div className="grid grid-cols-1 gap-10 lg:grid-cols-[minmax(140px,200px)_minmax(0,1fr)] lg:gap-16">
+                  <div>
+                    <p className="text-sm font-medium text-zinc-500 md:text-[15px]">{exp.period}</p>
+                    <p className="mt-2 text-xs text-zinc-400 lg:hidden">{exp.location}</p>
+                  </div>
+
+                  <div>
+                    <h2 className="text-2xl font-bold tracking-tight text-zinc-950 md:text-3xl lg:text-[2rem]">
+                      {exp.position}
+                    </h2>
+                    <p className="mt-1 text-lg font-semibold text-primary md:text-xl">{exp.company}</p>
+                    <p className="mt-2 hidden text-sm text-zinc-500 lg:block">{exp.location}</p>
+
+                    <p className="mt-5 text-sm leading-relaxed text-zinc-600 md:text-base">{exp.summary}</p>
+
+                    <blockquote className="mt-6 border-l-4 border-primary py-1 pl-4 text-sm italic leading-relaxed text-zinc-700 md:text-base">
+                      {exp.quote}
+                    </blockquote>
+
+                    <p className="mt-8 text-[10px] font-semibold uppercase tracking-[0.2em] text-zinc-500">
+                      Key Projects & Achievements
+                    </p>
+                    <ul className="mt-4 space-y-4">
+                      {exp.highlights.map((h, hi) => (
+                        <li
+                          key={`${exp.company}-${hi}`}
+                          className="flex gap-3 text-sm leading-relaxed text-zinc-700 md:text-[15px]"
+                        >
+                          <span className="mt-2 h-2 w-2 shrink-0 bg-primary" aria-hidden />
                           {h}
                         </li>
                       ))}
                     </ul>
-                    <div className="flex flex-wrap gap-2 pt-2">
+
+                    <p className="mt-8 text-[10px] font-semibold uppercase tracking-[0.2em] text-zinc-500">
+                      Technologies used
+                    </p>
+                    <div className="mt-4 flex flex-wrap gap-2">
                       {exp.tech.map((t) => (
-                        <span key={t} className="px-2 py-0.5 text-xs bg-primary/10 text-primary rounded border border-primary/20 font-mono">
+                        <span
+                          key={`${exp.company}-${t}`}
+                          className="rounded border border-zinc-300/90 bg-zinc-200/60 px-3 py-1.5 text-[10px] font-medium uppercase tracking-wider text-zinc-700"
+                        >
                           {t}
                         </span>
                       ))}
                     </div>
                   </div>
-                </motion.div>
-              </div>
-            </motion.div>
-          ))}
+                </div>
+              </motion.article>
+            ))}
+          </div>
         </div>
-      </div>
-    </section>
+      </section>
+    </>
   );
 }

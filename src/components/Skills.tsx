@@ -1,78 +1,131 @@
 import { motion } from 'framer-motion';
+import { Braces, LayoutGrid, Palette, Cloud, TestTube2, Wrench, type LucideIcon } from 'lucide-react';
 
-const skillGroups = [
+type SkillGroup = {
+  icon: LucideIcon;
+  title: string;
+  skills: string[];
+};
+
+/** Original capability groups — same coverage as before, presented as icon cards */
+const buildStack: SkillGroup[] = [
   {
+    icon: Braces,
     title: 'Languages',
     skills: ['JavaScript', 'TypeScript', 'Java', 'Python', 'Node.js'],
   },
   {
+    icon: LayoutGrid,
     title: 'Frameworks',
     skills: ['React', 'Next.js', 'Angular', 'Redux', 'React Native', 'React Flow'],
   },
   {
+    icon: Palette,
     title: 'Styling',
     skills: ['HTML', 'CSS', 'Tailwind CSS', 'SCSS', 'Styled Components', 'Shadow DOM'],
   },
+];
+
+const platformStack: SkillGroup[] = [
   {
+    icon: Cloud,
     title: 'Cloud & DevOps',
     skills: ['AWS', 'GCP', 'Azure', 'Docker', 'Kubernetes', 'CI/CD', 'CloudFront'],
   },
   {
+    icon: TestTube2,
     title: 'Testing',
     skills: ['Jest', 'Cypress', 'Playwright', 'React Testing Library'],
   },
   {
+    icon: Wrench,
     title: 'Tools',
     skills: ['Git', 'GitHub', 'JIRA', 'Confluence', 'Figma', 'Rollup'],
   },
 ];
 
+function ColumnHeader({ title }: { title: string }) {
+  return (
+    <div className="mb-8">
+      <h3 className="inline-block text-sm font-semibold uppercase tracking-[0.2em] text-white">{title}</h3>
+      <div className="mt-3 h-0.5 w-12 rounded-full bg-primary" />
+    </div>
+  );
+}
+
+function SkillCard({ group, index }: { group: SkillGroup; index: number }) {
+  const Icon = group.icon;
+  const description = group.skills.join(', ');
+
+  return (
+    <motion.article
+      initial={{ opacity: 0, y: 14 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: '-30px' }}
+      transition={{ duration: 0.4, delay: index * 0.06 }}
+      className="flex gap-4 rounded-xl border border-white/[0.08] bg-white/[0.04] p-4 backdrop-blur-sm transition-colors hover:border-primary/25 hover:bg-white/[0.06]"
+    >
+      <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full border border-white/10 bg-[#14141c] text-primary shadow-inner">
+        <Icon className="h-5 w-5" strokeWidth={2} />
+      </div>
+      <div className="min-w-0 pt-0.5">
+        <h4 className="font-semibold text-white">{group.title}</h4>
+        <p className="mt-1.5 text-sm leading-relaxed text-white/55">{description}</p>
+      </div>
+    </motion.article>
+  );
+}
+
 export default function Skills() {
   return (
-    <section id="skills" className="section-padding bg-background relative">
-      <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-primary/20 to-transparent" />
+    <section id="skills" className="relative overflow-hidden bg-[#0c0c0e]">
+      <div
+        className="pointer-events-none absolute inset-0 opacity-[0.07]"
+        style={{
+          backgroundImage:
+            'linear-gradient(hsl(195 100% 50% / 0.35) 1px, transparent 1px), linear-gradient(90deg, hsl(195 100% 50% / 0.35) 1px, transparent 1px)',
+          backgroundSize: 'var(--cyber-grid-cell) var(--cyber-grid-cell)',
+        }}
+      />
+      <div className="pointer-events-none absolute left-1/2 top-[28%] h-[min(380px,50vw)] w-[min(480px,85vw)] -translate-x-1/2 -translate-y-1/2 rounded-full bg-primary/15 blur-[90px]" />
 
-      <div className="container-custom">
+      <div className="relative mx-auto max-w-6xl px-6 pb-20 pt-28 md:pb-28 md:pt-32">
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 18 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
           viewport={{ once: true }}
-          className="text-center mb-16"
+          transition={{ duration: 0.55 }}
+          className="mb-16 text-center md:mb-20"
         >
-          <span className="text-xs tracking-[0.3em] uppercase text-muted-foreground font-mono mb-4 block">
-            Tech Stack
-          </span>
-          <h2 className="text-4xl md:text-5xl font-bold text-foreground">
-            Skills & Tools
-          </h2>
+          <p className="mb-4 text-[10px] font-medium uppercase tracking-[0.35em] text-white/45">Expertise</p>
+          <h1 className="font-bungee text-4xl tracking-wide text-white md:text-5xl lg:text-[3rem]">Skills & Capabilities</h1>
+          <p className="mx-auto mt-4 max-w-xl text-sm text-white/55 md:text-base">
+            Languages, frameworks, styling, cloud, testing, and tooling , the full stack I use to design, ship, and
+            maintain production software.
+          </p>
         </motion.div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-5xl mx-auto">
-          {skillGroups.map((group, index) => (
-            <motion.div
-              key={group.title}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: index * 0.08 }}
-              viewport={{ once: true }}
-              className="cyber-card p-6"
-            >
-              <h3 className="text-sm font-bold text-primary uppercase tracking-wider mb-4">
-                {group.title}
-              </h3>
-              <div className="flex flex-wrap gap-2">
-                {group.skills.map((skill) => (
-                  <span
-                    key={skill}
-                    className="px-3 py-1.5 text-sm bg-muted text-foreground rounded-lg border border-border hover:border-primary/30 hover:bg-primary/5 transition-colors"
-                  >
-                    {skill}
-                  </span>
-                ))}
-              </div>
-            </motion.div>
-          ))}
+        <div className="grid gap-14 lg:grid-cols-2 lg:gap-16">
+          <div>
+            <ColumnHeader title="Languages, frameworks & styling" />
+            <div className="space-y-4">
+              {buildStack.map((group, index) => (
+                <SkillCard key={group.title} group={group} index={index} />
+              ))}
+            </div>
+          </div>
+
+          <div>
+            <ColumnHeader title="Cloud, testing & tools" />
+            <div className="space-y-4">
+              {platformStack.map((group, index) => (
+                <SkillCard key={group.title} group={group} index={index} />
+              ))}
+            </div>
+            <div className="mt-10 flex justify-center lg:justify-start">
+              <div className="h-2 w-2 rounded-full border border-white/25 bg-white/15" aria-hidden />
+            </div>
+          </div>
         </div>
       </div>
     </section>

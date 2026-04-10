@@ -15,7 +15,7 @@ interface Message {
 const staticReplies: Record<string, string> = {
   'hello': "Hi there! I'm Karuna's assistant. How can I help you today?",
   'hi': "Hello! I'm here to help you learn more about Karuna. What would you like to know?",
-  'experience': "Karuna has 7+ years of experience as a Senior Software Developer, specializing in React, Angular, and full-stack development. Currently at Intuit (Toronto) working on Mailchimp dotcom—building high-traffic customer-facing experiences, A/B testing, INP optimization, and Playwright E2E testing.",
+  'experience': "Karuna has 7+ years of experience as a Senior Software Developer, specializing in React, Angular, and full-stack development. Currently at Intuit (Toronto) working on mailchimp.com , building high-traffic customer-facing experiences, A/B testing, INP optimization, and Playwright E2E testing.",
   'skills': "Karuna is proficient in React,TypeScript, JavaScript, Angular, Node.js, , Python, AWS and many other technologies. Check out the skills section for the complete list!",
   'projects': "Karuna has worked on various projects including web applications, e-commerce platforms, and enterprise solutions. You can see featured projects in the portfolio section.",
   'contact': "You can reach Karuna at karunaguglani15@gmail.com or connect on LinkedIn. She's available for remote work opportunities.",
@@ -121,26 +121,61 @@ export default function ChatWidget() {
 
   const chatWidget = (
     <>
-      {/* Chat Button */}
+      {/* Chat Button — smiley + rotating orbit */}
       <motion.div
-        style={{
-          position: 'fixed',
-          bottom: '24px',
-          right: '24px',
-          zIndex: 999999,
-          pointerEvents: 'auto'
-        }}
+        style={{ position: 'fixed', bottom: '24px', right: '24px', zIndex: 999999, pointerEvents: 'auto' }}
         initial={{ scale: 0 }}
         animate={{ scale: 1 }}
         transition={{ duration: 0.3 }}
       >
-        <Button
+        <button
           onClick={() => setIsOpen(!isOpen)}
-          className="w-14 h-14 rounded-full bg-gradient-primary hover:bg-gradient-primary/90 shadow-lg hover:shadow-xl transition-all duration-300"
-          size="icon"
+          className="relative w-16 h-16 flex items-center justify-center group"
+          aria-label="Open chat"
         >
-          {isOpen ? <X className="h-6 w-6" /> : <MessageCircle className="h-6 w-6" />}
-        </Button>
+          {isOpen ? (
+            /* Close state */
+            <div className="w-12 h-12 rounded-full bg-zinc-800 border border-white/20 flex items-center justify-center shadow-xl">
+              <X className="h-5 w-5 text-white" />
+            </div>
+          ) : (
+            <>
+              {/* Outer rotating ring with dot */}
+              <motion.div
+                className="absolute inset-0"
+                animate={{ rotate: 360 }}
+                transition={{ duration: 4, repeat: Infinity, ease: 'linear' }}
+              >
+                {/* Ring */}
+                <svg viewBox="0 0 64 64" className="w-full h-full">
+                  <circle
+                    cx="32" cy="32" r="28"
+                    fill="none"
+                    stroke="rgba(255,255,255,0.25)"
+                    strokeWidth="1.5"
+                    strokeDasharray="4 3"
+                  />
+                  {/* Orbiting dot */}
+                  <circle cx="32" cy="4" r="3.5" fill="white" />
+                </svg>
+              </motion.div>
+
+              {/* Inner circle with smiley */}
+              <div className="w-10 h-10 rounded-full bg-amber-300 flex items-center justify-center shadow-lg group-hover:scale-105 transition-transform duration-200 z-10 relative">
+                <svg viewBox="0 0 40 40" className="w-7 h-7">
+                  {/* Face */}
+                  <circle cx="20" cy="20" r="18" fill="#FBBF24" />
+                  {/* Left eye */}
+                  <ellipse cx="14" cy="16" rx="2.2" ry="2.8" fill="#1a1a1a" />
+                  {/* Right eye — winking */}
+                  <path d="M24 14 Q26 13 28 14" stroke="#1a1a1a" strokeWidth="2" strokeLinecap="round" fill="none" />
+                  {/* Smile */}
+                  <path d="M13 24 Q20 31 27 24" stroke="#1a1a1a" strokeWidth="2" strokeLinecap="round" fill="none" />
+                </svg>
+              </div>
+            </>
+          )}
+        </button>
       </motion.div>
 
       {/* Chat Window */}

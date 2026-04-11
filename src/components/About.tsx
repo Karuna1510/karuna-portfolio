@@ -6,9 +6,13 @@ import { Button } from '@/components/ui/button';
 import avatarSrc from '@/assets/avatar-about.png';
 
 const HEADLINE_LINE1 = 'Senior Full Stack Developer';
-const HEADLINE_LINE2_PREFIX = 'with 7+ years crafting enterprise experiences ';
+/** NBSP keeps “enterprise experiences” on one line while typing (avoids orphan wrap). */
+const HEADLINE_LINE2_PREFIX = 'with 7+ years crafting enterprise\u00A0experiences ';
 const HEADLINE_LINE2_ITALIC = 'that scale.';
 const HEADLINE_LINE2 = HEADLINE_LINE2_PREFIX + HEADLINE_LINE2_ITALIC;
+
+/** ID badge column + card width (px); keep `sm:w-[300px]` / `300` in max-w-* in sync */
+const ABOUT_CARD_W = 300;
 
 function AboutTypingHeadline() {
   const ref = useRef<HTMLHeadingElement>(null);
@@ -70,97 +74,104 @@ function AboutTypingHeadline() {
   return (
     <h2
       ref={ref}
-      className="text-3xl md:text-4xl lg:text-[2.75rem] font-bold text-zinc-900 leading-[1.22] md:leading-[1.28] tracking-tight max-w-2xl min-h-[4.5rem] sm:min-h-[5.5rem] md:min-h-[6.5rem]"
+      className="w-full max-w-none font-bold tracking-tight text-zinc-900 min-h-[4.25rem] sm:min-h-[5rem] md:min-h-[5.5rem] lg:min-h-[6.5rem]"
       aria-live="polite"
     >
-      <span className="block">
+      <span className="block text-balance text-3xl leading-[1.12] sm:text-4xl md:text-[2.35rem] md:leading-[1.18] lg:text-[2.65rem] lg:leading-[1.15]">
         {line1}
         {!line1Done && <Caret />}
       </span>
-      <span className="  block min-h-[1.35em] text-balance">
-        {line1Done ? (
-          <>
-            {line2Plain}
-            <span className="italic">{line2Italic}</span>
-            {!done && <Caret />}
-          </>
-        ) : null}
-      </span>
+      {line1Done ? (
+        <span className="block w-full max-w-full text-balance text-3xl leading-[1.12] sm:text-4xl md:text-[2.35rem] md:leading-[1.18] lg:text-[2.65rem] lg:leading-[1.15]">
+          {line2Plain}
+          <span className="italic">{line2Italic}</span>
+          {!done && <Caret />}
+        </span>
+      ) : null}
     </h2>
   );
 }
 
 export default function About() {
   return (
-    <section id="about" className="bg-[#f0f0ee] relative overflow-visible pt-0 pb-14 md:pb-20">
+    <section
+      id="about"
+      data-cursor-theme="light"
+      className="relative overflow-x-hidden overflow-y-visible bg-[#f0f0ee] pb-14 pl-6 pr-4 pt-0 sm:pl-8 sm:pr-6 md:pb-20 md:pl-10 md:pr-10 lg:pl-12 xl:pl-14"
+    >
+      {/* Flex (not centered max-w box) so the ID card sits near the viewport edge */}
+      <div className="flex w-full flex-col items-stretch gap-20 lg:flex-row lg:items-start lg:gap-28 xl:gap-36 2xl:gap-44">
+        {/* ── ID Card column — only section padding from the left edge ── */}
+        <div
+          className="flex w-full shrink-0 flex-col items-start sm:w-[300px]"
+          style={{ maxWidth: `${ABOUT_CARD_W}px` }}
+        >
+          {/* Grommet — fixed, no swing */}
+          <div className="flex w-full flex-col items-center">
+            <div className="relative z-10 h-8 w-8">
+              <div className="absolute inset-0 rounded-full bg-gradient-to-br from-zinc-200 via-white to-zinc-400 shadow-lg" />
+              <div className="absolute inset-[3px] rounded-full bg-gradient-to-br from-zinc-600 to-zinc-800" />
+              <div className="absolute inset-[8px] rounded-full bg-gradient-to-br from-zinc-900 to-black" />
+            </div>
+            <div className="-mt-1 h-20 w-[6px] bg-[#3b72f0]" />
+          </div>
 
-      <div className="max-w-6xl mx-auto px-6 md:px-12">
-        <div className="grid lg:grid-cols-[300px_1fr] gap-12 lg:gap-20 items-start">
-
-          {/* ── ID Card column — flush to left edge ── */}
-          <div className="flex flex-col items-start -ml-6 md:-ml-12">
-            {/* Grommet — fixed, no swing */}
-            <div className="flex flex-col items-center w-[260px]">
-              <div className="relative w-7 h-7 z-10">
-                <div className="absolute inset-0 rounded-full bg-gradient-to-br from-zinc-200 via-white to-zinc-400 shadow-lg" />
-                <div className="absolute inset-[3px] rounded-full bg-gradient-to-br from-zinc-600 to-zinc-800" />
-                <div className="absolute inset-[7px] rounded-full bg-gradient-to-br from-zinc-900 to-black" />
+          {/* Card — oscillating swing from top */}
+          <motion.div
+            style={{ originX: '50%', originY: 0 }}
+            animate={{ rotate: [-1.5, 1.5, -1.5] }}
+            transition={{ duration: 4, repeat: Infinity, ease: 'easeInOut' }}
+            className="relative mb-14 w-full max-w-[min(100%,300px)] overflow-visible rounded-2xl border border-white/5 bg-[#1a1a1a] shadow-2xl sm:w-[300px] sm:max-w-none"
+          >
+            {/* Dark cap — small area above blue header where lanyard clips in */}
+            <div className="flex justify-center items-center rounded-t-2xl bg-[#1a1a1a] pb-2 pt-3">
+              <div className="flex h-6 w-6 items-center justify-center rounded-full border border-white/10 bg-[#111]">
+                <div className="h-2.5 w-2.5 rounded-full bg-white/15" />
               </div>
-              <div className="w-[6px] h-20 bg-[#3b72f0] -mt-1" />
             </div>
 
-            {/* Card — oscillating swing from top */}
-            <motion.div
-              style={{ originX: '50%', originY: 0 }}
-              animate={{ rotate: [-1.5, 1.5, -1.5] }}
-              transition={{ duration: 4, repeat: Infinity, ease: 'easeInOut' }}
-              className="relative w-[260px] bg-[#1a1a1a] rounded-2xl overflow-visible shadow-2xl border border-white/5 mb-16"
-            >
+            {/* Blue header — shimmer; label pinned high so avatar overlap doesn’t cover it */}
+            <div className="relative flex min-h-[5rem] flex-col items-center justify-start overflow-hidden bg-[#3b72f0] px-5 pb-12 pt-3 text-center sm:min-h-[5.25rem] sm:pt-4">
+              <div className="absolute inset-0 z-0 animate-[shimmer_3s_linear_infinite] bg-[linear-gradient(45deg,transparent_25%,rgba(255,255,255,.08)_50%,transparent_75%,transparent_100%)] bg-[length:250%_250%,100%_100%]" />
+              <span className="relative z-10 text-[11px] font-black uppercase tracking-[0.3em] text-white sm:text-[12px]">
+                About Me
+              </span>
+            </div>
 
-              {/* Dark cap — small area above blue header where lanyard clips in */}
-              <div className="flex justify-center items-center bg-[#1a1a1a] rounded-t-2xl pt-3 pb-2">
-                <div className="w-5 h-5 rounded-full bg-[#111] border border-white/10 flex items-center justify-center">
-                  <div className="w-2 h-2 rounded-full bg-white/15" />
-                </div>
+            {/* Avatar — overlaps lower blue only; less negative margin so “About Me” stays clear */}
+            <div className="relative z-[5] -mt-11 mb-2.5 flex justify-center">
+              <div className="h-[7.25rem] w-[7.25rem] overflow-hidden rounded-full border-4 border-[#1a1a1a] bg-[#1a1a1a] shadow-xl ring-[3px] ring-[#1a1a1a] ring-offset-0">
+                <img src={avatarSrc} alt="Karuna Guglani" className="h-full w-full object-cover object-top" />
               </div>
+            </div>
 
-              {/* Blue header — shimmer */}
-              <div className="relative bg-[#3b72f0] px-4 pt-6 pb-14 text-center overflow-hidden">
-                <div className="absolute inset-0 bg-[linear-gradient(45deg,transparent_25%,rgba(255,255,255,.08)_50%,transparent_75%,transparent_100%)] bg-[length:250%_250%,100%_100%] animate-[shimmer_3s_linear_infinite]" />
-                <span className="relative text-white text-[11px] font-black tracking-[0.3em] uppercase">About Me</span>
+            {/* Name + email */}
+            <div className="px-5 pb-4 text-center">
+              <h3 className="text-lg font-bold tracking-wide text-white sm:text-xl">Karuna Guglani</h3>
+              <p className="mt-1 text-xs text-blue-400 sm:text-sm">karunaguglani15@gmail.com</p>
+              <div className="mt-2.5 flex flex-wrap justify-center gap-1.5">
+                {['Full Stack', 'Architecture', 'Performance'].map((tag) => (
+                  <span
+                    key={tag}
+                    className="rounded border border-blue-500/30 bg-blue-500/10 px-2 py-0.5 text-[8px] font-semibold uppercase tracking-wider text-blue-400 sm:text-[9px]"
+                  >
+                    {tag}
+                  </span>
+                ))}
               </div>
+            </div>
 
-              {/* Avatar — overlaps the blue header */}
-              <div className="flex justify-center -mt-14 mb-2 relative z-10">
-                <div className="w-28 h-28 rounded-full overflow-hidden ring-3 ring-[#1a1a1a] ring-offset-0 border-4 border-[#1a1a1a] shadow-xl bg-[#1a1a1a]">
-                  <img src={avatarSrc} alt="Karuna Guglani" className="w-full h-full object-cover object-top" />
-                </div>
-              </div>
+            {/* Currently at */}
+            <div className="px-5 pb-4 text-center">
+              <p className="mb-1 text-[9px] uppercase tracking-[0.2em] text-white/35 sm:text-[10px]">Currently at</p>
+              <p className="text-xs font-bold text-white sm:text-sm">Intuit (Mailchimp)</p>
+            </div>
 
-              {/* Name + email */}
-              <div className="text-center px-4 pb-4">
-                <h3 className="text-white font-bold text-lg tracking-wide">Karuna Guglani</h3>
-                <p className="text-blue-400 text-xs mt-1">karunaguglani15@gmail.com</p>
-                <div className="flex flex-wrap justify-center gap-1 mt-3">
-                  {['Full Stack', 'Architecture', 'Performance'].map(tag => (
-                    <span key={tag} className="px-1.5 py-0.5 bg-blue-500/10 border border-blue-500/30 rounded text-[8px] uppercase tracking-wider text-blue-400 font-semibold">
-                      {tag}
-                    </span>
-                  ))}
-                </div>
-              </div>
+            {/* Divider */}
+            <div className="mx-5 h-px bg-white/10" />
 
-              {/* Currently at */}
-              <div className="px-4 pb-4 text-center">
-                <p className="text-white/35 text-[9px] uppercase tracking-[0.2em] mb-1">Currently at</p>
-                <p className="text-white text-xs font-bold">Intuit (Mailchimp)</p>
-              </div>
-
-              {/* Divider */}
-              <div className="h-px bg-white/10 mx-4" />
-
-              {/* Detail rows */}
-              <div className="px-4 py-4 space-y-3">
+            {/* Detail rows */}
+            <div className="space-y-2.5 px-5 py-4">
                 {[
                   { label: 'ID No', value: 'KG-2018-001', href: 'https://linkedin.com/in/karuna-guglani-7a8458152' },
                   { label: 'Experience', value: '7+ Years' },
@@ -179,17 +190,17 @@ export default function About() {
                   </div>
                 ))}
               </div>
-            </motion.div>
-          </div>
+          </motion.div>
+        </div>
 
-          {/* ── Bio text — has its own vertical padding ── */}
-          <motion.div
-            initial={{ opacity: 0, x: 30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            viewport={{ once: true }}
-            className="space-y-6 pt-24 md:pt-32 lg:pt-24 pb-4 md:pb-6 text-left"
-          >
+        {/* ── Bio — line-length cap only; row is not mx-auto centered ── */}
+        <motion.div
+          initial={{ opacity: 0, x: 30 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.6, delay: 0.2 }}
+          viewport={{ once: true }}
+          className="min-w-0 max-w-3xl flex-1 space-y-6 pb-4 pt-24 text-left md:pb-6 md:pt-32 lg:max-w-4xl xl:max-w-5xl lg:pl-12 lg:pt-24 xl:pl-20 2xl:pl-24"
+        >
             <AboutTypingHeadline />
 
             <p className="text-base text-zinc-600 leading-relaxed max-w-2xl">
@@ -222,9 +233,7 @@ export default function About() {
                 My Experience <ArrowUpRight className="w-4 h-4" />
               </Link>
             </div>
-          </motion.div>
-
-        </div>
+        </motion.div>
       </div>
     </section>
   );

@@ -53,16 +53,20 @@ function ColumnHeader({ title }: { title: string }) {
   );
 }
 
-function SkillCard({ group, index }: { group: SkillGroup; index: number }) {
+function SkillCard({ group, cardIndex }: { group: SkillGroup; cardIndex: number }) {
   const Icon = group.icon;
   const description = group.skills.join(', ');
 
   return (
     <motion.article
-      initial={{ opacity: 0, y: 14 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: '-30px' }}
-      transition={{ duration: 0.4, delay: index * 0.06 }}
+      initial={{ opacity: 0, y: 32, scale: 0.96 }}
+      whileInView={{ opacity: 1, y: 0, scale: 1 }}
+      viewport={{ once: true, margin: '-12% 0px' }}
+      transition={{
+        duration: 0.5,
+        delay: cardIndex * 0.09,
+        ease: [0.22, 1, 0.36, 1],
+      }}
       className="flex gap-4 rounded-xl border border-white/[0.08] bg-white/[0.04] p-4 backdrop-blur-sm transition-colors hover:border-primary/25 hover:bg-white/[0.06]"
     >
       <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full border border-white/10 bg-[#14141c] text-primary shadow-inner">
@@ -110,7 +114,7 @@ export default function Skills() {
             <ColumnHeader title="Languages, frameworks & styling" />
             <div className="space-y-4">
               {buildStack.map((group, index) => (
-                <SkillCard key={group.title} group={group} index={index} />
+                <SkillCard key={group.title} group={group} cardIndex={index} />
               ))}
             </div>
           </div>
@@ -119,12 +123,10 @@ export default function Skills() {
             <ColumnHeader title="Cloud, testing & tools" />
             <div className="space-y-4">
               {platformStack.map((group, index) => (
-                <SkillCard key={group.title} group={group} index={index} />
+                <SkillCard key={group.title} group={group} cardIndex={index + buildStack.length} />
               ))}
             </div>
-            <div className="mt-10 flex justify-center lg:justify-start">
-              <div className="h-2 w-2 rounded-full border border-white/25 bg-white/15" aria-hidden />
-            </div>
+           
           </div>
         </div>
       </div>

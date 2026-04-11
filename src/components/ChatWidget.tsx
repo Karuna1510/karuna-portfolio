@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from 'react';
 import { createPortal } from 'react-dom';
 import { motion, AnimatePresence } from 'framer-motion';
-import { MessageCircle, X, Send, User, Bot } from 'lucide-react';
+import { X, Send, User, Bot } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 
@@ -130,13 +130,13 @@ export default function ChatWidget() {
       >
         <button
           onClick={() => setIsOpen(!isOpen)}
-          className="relative w-16 h-16 flex items-center justify-center group"
+          className="relative flex h-[4.5rem] w-[4.5rem] items-center justify-center group"
           aria-label="Open chat"
         >
           {isOpen ? (
             /* Close state */
-            <div className="w-12 h-12 rounded-full bg-zinc-800 border border-white/20 flex items-center justify-center shadow-xl">
-              <X className="h-5 w-5 text-white" />
+            <div className="flex h-14 w-14 items-center justify-center rounded-full border border-white/20 bg-zinc-800 shadow-xl">
+              <X className="h-6 w-6 text-white" />
             </div>
           ) : (
             <>
@@ -160,18 +160,28 @@ export default function ChatWidget() {
                 </svg>
               </motion.div>
 
-              {/* Inner circle with smiley */}
-              <div className="w-10 h-10 rounded-full bg-amber-300 flex items-center justify-center shadow-lg group-hover:scale-105 transition-transform duration-200 z-10 relative">
-                <svg viewBox="0 0 40 40" className="w-7 h-7">
-                  {/* Face */}
-                  <circle cx="20" cy="20" r="18" fill="#FBBF24" />
-                  {/* Left eye */}
-                  <ellipse cx="14" cy="16" rx="2.2" ry="2.8" fill="#1a1a1a" />
-                  {/* Right eye — winking */}
-                  <path d="M24 14 Q26 13 28 14" stroke="#1a1a1a" strokeWidth="2" strokeLinecap="round" fill="none" />
-                  {/* Smile */}
-                  <path d="M13 24 Q20 31 27 24" stroke="#1a1a1a" strokeWidth="2" strokeLinecap="round" fill="none" />
-                </svg>
+              {/* White circle + face (inner black ring around emoji) */}
+              <div className="relative z-10 flex h-12 w-12 items-center justify-center rounded-full bg-white shadow-lg ring-1 ring-black/5 transition-transform duration-200 group-hover:scale-105">
+                <div className="flex shrink-0 items-center justify-center rounded-full border-2 border-black">
+                  <svg viewBox="0 0 40 40" className="block h-9 w-9" aria-hidden>
+                    <circle cx="20" cy="20" r="18" fill="#FBBF24" />
+                    <ellipse cx="14" cy="16" rx="2.2" ry="2.8" fill="#1a1a1a" />
+                    <path
+                      d="M24 14 Q26 13 28 14"
+                      stroke="#1a1a1a"
+                      strokeWidth="2"
+                      strokeLinecap="round"
+                      fill="none"
+                    />
+                    <path
+                      d="M13 24 Q20 31 27 24"
+                      stroke="#1a1a1a"
+                      strokeWidth="2"
+                      strokeLinecap="round"
+                      fill="none"
+                    />
+                  </svg>
+                </div>
               </div>
             </>
           )}
@@ -188,7 +198,7 @@ export default function ChatWidget() {
             transition={{ duration: 0.2 }}
             style={{
               position: 'fixed',
-              bottom: '96px',
+              bottom: '104px',
               right: '24px',
               width: '384px',
               height: '500px',

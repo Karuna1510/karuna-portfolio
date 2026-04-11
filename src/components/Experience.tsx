@@ -3,6 +3,47 @@ import { Link } from 'react-router-dom';
 import { Check, ArrowUpRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 
+const easeOut = [0.22, 1, 0.36, 1] as const;
+
+const highlightListVariants = {
+  hidden: {},
+  visible: {
+    transition: {
+      staggerChildren: 0.065,
+      delayChildren: 0.18,
+    },
+  },
+} as const;
+
+const highlightItemVariants = {
+  hidden: { opacity: 0, x: -18 },
+  visible: {
+    opacity: 1,
+    x: 0,
+    transition: { duration: 0.4, ease: easeOut },
+  },
+} as const;
+
+const techRowVariants = {
+  hidden: {},
+  visible: {
+    transition: {
+      staggerChildren: 0.04,
+      delayChildren: 0.08,
+    },
+  },
+} as const;
+
+const techChipVariants = {
+  hidden: { opacity: 0, y: 8, scale: 0.96 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    scale: 1,
+    transition: { duration: 0.3, ease: easeOut },
+  },
+} as const;
+
 const heroBullets = [
   'High-traffic customer-facing products , shipping iteratively with measurable experimentation and a strong focus on quality.',
   'Shipped platforms and client SDKs on cloud infrastructure with strong uptime and performance discipline.',
@@ -139,8 +180,8 @@ const experiences = [
 export default function Experience() {
   return (
     <>
-      {/* Hero — dark grid + headline + intro */}
-      <section className="relative overflow-hidden bg-[#0c0c0e]">
+      {/* Hero — dark grid + headline + intro (taller band for breathing room) */}
+      <section className="relative min-h-[min(78vh,920px)] overflow-hidden bg-[#0c0c0e] sm:min-h-[min(80vh,960px)]">
         <div
           className="pointer-events-none absolute inset-0 opacity-[0.06]"
           style={{
@@ -149,17 +190,17 @@ export default function Experience() {
             backgroundSize: 'var(--cyber-grid-cell) var(--cyber-grid-cell)',
           }}
         />
-        <div className="pointer-events-none absolute left-1/2 top-[40%] h-[min(420px,55vw)] w-[min(520px,90vw)] -translate-x-1/2 -translate-y-1/2 rounded-full bg-primary/25 blur-[100px]" />
+        <div className="pointer-events-none absolute left-1/2 top-[38%] h-[min(480px,58vw)] w-[min(560px,92vw)] -translate-x-1/2 -translate-y-1/2 rounded-full bg-primary/25 blur-[100px]" />
 
-        <div className="relative mx-auto max-w-6xl px-6 pb-16 pt-28 md:pb-24 md:pt-32">
+        <div className="relative mx-auto max-w-6xl px-6 pb-28 pt-32 md:pb-40 md:pt-40 lg:pb-44 lg:pt-44">
           <div className="grid items-start gap-12 lg:grid-cols-2 lg:gap-20">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.55 }}
             >
-              <p className="mb-4 text-[10px] font-medium uppercase tracking-[0.28em] text-white/45">About</p>
-              <h1 className="font-bungee text-4xl tracking-wide text-white md:text-5xl lg:text-[3.25rem] lg:leading-[1.15]">
+              <p className="mb-4 text-[12px] font-medium uppercase tracking-[0.28em] text-white/45">About</p>
+              <h1 className="font-bungee text-4xl tracking-wide text-white md:text-6xl lg:text-[4.25rem] lg:leading-[1.15]">
                 7+ years developing at scale.</h1>
             </motion.div>
 
@@ -170,10 +211,8 @@ export default function Experience() {
               className="space-y-6"
             >
               <div className="flex items-start gap-3">
-                <div className="mt-1 flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-white/20 bg-white/5">
-                  <span className="h-1.5 w-1.5 rounded-full bg-primary" />
-                </div>
-                <p className="text-sm leading-relaxed text-white/65 md:text-base">
+               
+                <p className="text-base leading-relaxed text-white/65 md:text-lg">
                   Senior Software Developer focused on enterprise and high-traffic web products , from design systems
                   and performance to AI-assisted workflows and cloud delivery.
                 </p>
@@ -220,10 +259,10 @@ export default function Experience() {
             {experiences.map((exp, index) => (
               <motion.article
                 key={`${exp.company}-${exp.period}`}
-                initial={{ opacity: 0, y: 16 }}
+                initial={{ opacity: 0, y: 36 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: '-40px' }}
-                transition={{ duration: 0.45, delay: index * 0.05 }}
+                viewport={{ once: true, margin: '-14% 0px' }}
+                transition={{ duration: 0.55, ease: easeOut, delay: index * 0.04 }}
                 className="border-b border-zinc-300/90 py-14 first:pt-0 last:border-b-0 md:py-16"
               >
                 <div className="grid grid-cols-1 gap-10 lg:grid-cols-[minmax(140px,200px)_minmax(0,1fr)] lg:gap-16">
@@ -248,31 +287,45 @@ export default function Experience() {
                     <p className="mt-8 text-[10px] font-semibold uppercase tracking-[0.2em] text-zinc-500">
                       Key Projects & Achievements
                     </p>
-                    <ul className="mt-4 space-y-4">
+                    <motion.ul
+                      className="mt-4 space-y-4"
+                      variants={highlightListVariants}
+                      initial="hidden"
+                      whileInView="visible"
+                      viewport={{ once: true, margin: '-8% 0px', amount: 0.12 }}
+                    >
                       {exp.highlights.map((h, hi) => (
-                        <li
+                        <motion.li
                           key={`${exp.company}-${hi}`}
+                          variants={highlightItemVariants}
                           className="flex gap-3 text-sm leading-relaxed text-zinc-700 md:text-[15px]"
                         >
                           <span className="mt-2 h-2 w-2 shrink-0 bg-primary" aria-hidden />
                           {h}
-                        </li>
+                        </motion.li>
                       ))}
-                    </ul>
+                    </motion.ul>
 
                     <p className="mt-8 text-[10px] font-semibold uppercase tracking-[0.2em] text-zinc-500">
                       Technologies used
                     </p>
-                    <div className="mt-4 flex flex-wrap gap-2">
+                    <motion.div
+                      className="mt-4 flex flex-wrap gap-2"
+                      variants={techRowVariants}
+                      initial="hidden"
+                      whileInView="visible"
+                      viewport={{ once: true, margin: '-6% 0px', amount: 0.2 }}
+                    >
                       {exp.tech.map((t) => (
-                        <span
+                        <motion.span
                           key={`${exp.company}-${t}`}
+                          variants={techChipVariants}
                           className="rounded border border-zinc-300/90 bg-zinc-200/60 px-3 py-1.5 text-[10px] font-medium uppercase tracking-wider text-zinc-700"
                         >
                           {t}
-                        </span>
+                        </motion.span>
                       ))}
-                    </div>
+                    </motion.div>
                   </div>
                 </div>
               </motion.article>

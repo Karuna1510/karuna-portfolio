@@ -4,6 +4,48 @@ import { ChevronRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import heroImage from '@/assets/avatar-hero.png';
 import { playFlipSound } from '@/lib/flipSound';
+import { useEntrancesReady } from '@/context/EntrancesReadyContext';
+
+/** Home hero: nav (sibling) → avatar from below → dashed lines + eyebrow + name → mid/bottom lines → columns */
+const EASE = [0.22, 1, 0.36, 1] as const;
+const T = {
+  avatar: 0.38,
+  lineTop: 0.84,
+  eyebrow: 0.88,
+  name0: 0.7,
+  nameStagger: 0.08,
+  lineMid: 1.28,
+  lineBottom: 1.48,
+  bottomL: 1.36,
+  bottomR: 1.44,
+} as const;
+
+function DashedLineReveal({
+  delay,
+  top,
+  bottom,
+  ready,
+}: {
+  delay: number;
+  top?: string;
+  bottom?: string;
+  ready: boolean;
+}) {
+  return (
+    <div
+      className="pointer-events-none absolute inset-x-0 z-[2] overflow-hidden"
+      style={top !== undefined ? { top } : { bottom: bottom! }}
+      aria-hidden
+    >
+      <motion.div
+        className="h-0 w-full origin-left border-t border-dashed border-white/15"
+        initial={{ scaleX: 0 }}
+        animate={{ scaleX: ready ? 1 : 0 }}
+        transition={{ duration: 0.72, delay: ready ? delay : 0, ease: EASE }}
+      />
+    </div>
+  );
+}
 
 const letters = [
   { char: 'K', term: 'Keyframes',     desc: 'CSS animations & motion',      symbol: '◇' },
@@ -14,14 +56,15 @@ const letters = [
   { char: 'A', term: 'Animations',    desc: 'Micro-interactions & motion',   symbol: '~' },
 ];
 
-function FlipLetter({ char, term, desc, symbol, delay }: {
+function FlipLetter({ char, term, desc, symbol, delay, ready }: {
   char: string; term: string; desc: string; symbol: string; delay: number;
+  ready: boolean;
 }) {
   return (
     <motion.div
-      initial={{ opacity: 0, y: 20 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.4, delay }}
+      initial={{ opacity: 0, y: 22 }}
+      animate={ready ? { opacity: 1, y: 0 } : { opacity: 0, y: 22 }}
+      transition={{ duration: 0.48, delay: ready ? delay : 0, ease: EASE }}
       className="group"
       style={{
         perspective: '700px',
@@ -68,21 +111,19 @@ function FlipLetter({ char, term, desc, symbol, delay }: {
 }
 
 export default function Hero() {
+  const ready = useEntrancesReady();
+
   return (
     <section className="relative min-h-screen bg-black text-white overflow-hidden select-none">
 
-      {/* Dashed divider — above the name */}
-      <div
-        className="absolute inset-x-0 z-[2] border-t border-dashed border-white/15 pointer-events-none"
-        style={{ top: '20%' }}
-        aria-hidden
-      />
+      {/* Top dashed line — after avatar has mostly entered */}
+      <DashedLineReveal top="20%" delay={T.lineTop} ready={ready} />
 
       {/* Eyebrow */}
       <motion.p
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 0.5 }}
+        initial={{ opacity: 0, y: 10 }}
+        animate={ready ? { opacity: 1, y: 0 } : { opacity: 0, y: 10 }}
+        transition={{ duration: 0.5, delay: ready ? T.eyebrow : 0, ease: EASE }}
         className="absolute z-20 text-left text-[10px] sm:text-xs tracking-[0.28em] uppercase text-white/55 font-medium px-4 sm:px-8 md:px-14 lg:px-20"
         style={{ top: 'calc(22% + 10px)' }}
       >
@@ -97,9 +138,7 @@ export default function Hero() {
         <div className="flex items-center justify-center" style={{ gap: '0.05em' }}>
           {/* KAR */}
           {letters.slice(0, 3).map((l, i) => (
-            <FlipLetter key={i} {...l} delay={0.08 + i * 0.06}
-              // flip on hover via CSS group
-            />
+            <FlipLetter key={i} {...l} delay={T.name0 + i * T.nameStagger} ready={ready} />
           ))}
 
           {/* Gap where avatar sits */}
@@ -107,33 +146,37 @@ export default function Hero() {
 
           {/* UNA */}
           {letters.slice(3).map((l, i) => (
-            <FlipLetter key={i + 3} {...l} delay={0.26 + i * 0.06} />
+            <FlipLetter key={i + 3} {...l} delay={T.name0 + (3 + i) * T.nameStagger} ready={ready} />
           ))}
         </div>
       </div>
 
-      {/* Dashed divider — below the name */}
-      <div
-        className="absolute inset-x-0 z-[2] border-t border-dashed border-white/15 pointer-events-none"
-        style={{ top: '56%' }}
-        aria-hidden
-      />
+      <DashedLineReveal top="56%" delay={T.lineMid} ready={ready} />
 
-      {/* Avatar */}
+      {/* Avatar — first focal motion on hero after nav */}
       <motion.div
-        initial={{ opacity: 0, y: 18 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.7, delay: 0.15 }}
+        initial={{ opacity: 0, y: '30vh' }}
+        animate={ready ? { opacity: 1, y: 0 } : { opacity: 0, y: '30vh' }}
+        transition={{ duration: 0.9, delay: ready ? T.avatar : 0, ease: EASE }}
         className="absolute inset-x-0 z-10 flex justify-center pointer-events-none"
         style={{ top: '20%', bottom: '12%' }}
       >
-        <img
-          src={heroImage}
-          alt="Karuna Guglani"
-          className="h-full w-auto object-contain object-bottom"
-          decoding="async"
-        />
+        <div className="relative mx-auto h-full w-max max-w-full">
+          <img
+            src={heroImage}
+            alt="Karuna Guglani"
+            className="block h-full w-auto max-h-full object-contain object-bottom"
+            decoding="async"
+          />
+          {/* Soft fade into black at the feet — gradient sits on top of the image */}
+          <div
+            className="pointer-events-none absolute inset-x-0 bottom-0 z-[1] h-[min(45%,10.5rem)] bg-gradient-to-t from-black via-black/55 to-transparent sm:h-[min(40%,12rem)]"
+            aria-hidden
+          />
+        </div>
       </motion.div>
+
+      <DashedLineReveal bottom="12%" delay={T.lineBottom} ready={ready} />
 
       {/* Bottom content */}
       <div
@@ -142,9 +185,9 @@ export default function Hero() {
       >
         {/* Left */}
         <motion.div
-          initial={{ opacity: 0, x: -16 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.55, delay: 0.35 }}
+          initial={{ opacity: 0, x: -28 }}
+          animate={ready ? { opacity: 1, x: 0 } : { opacity: 0, x: -28 }}
+          transition={{ duration: 0.58, delay: ready ? T.bottomL : 0, ease: EASE }}
           className="max-w-[190px] sm:max-w-xs pt-6"
         >
           <h1 className="text-base sm:text-lg md:text-xl font-semibold leading-snug mb-1.5 text-white">
@@ -168,9 +211,9 @@ export default function Hero() {
 
         {/* Right */}
         <motion.div
-          initial={{ opacity: 0, x: 16 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.55, delay: 0.4 }}
+          initial={{ opacity: 0, x: 28 }}
+          animate={ready ? { opacity: 1, x: 0 } : { opacity: 0, x: 28 }}
+          transition={{ duration: 0.58, delay: ready ? T.bottomR : 0, ease: EASE }}
           className="max-w-[180px] sm:max-w-xs text-right pt-6"
         >
           <h2 className="text-base sm:text-lg md:text-xl font-semibold text-white mb-1.5">

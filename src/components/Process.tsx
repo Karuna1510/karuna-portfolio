@@ -226,6 +226,7 @@ export default function Process() {
                       <button
                         type="button"
                         onClick={() => openStep(i)}
+                        data-cursor-theme="light"
                         className="relative h-full w-full cursor-pointer rounded-[12px] bg-white text-left transition duration-300 ease-out will-change-transform group-hover:-translate-y-3 group-hover:bg-zinc-50 group-hover:shadow-[0_20px_50px_-14px_rgba(0,0,0,0.35)]"
                       >
                         <CardFace card={cardItem} />
@@ -238,9 +239,9 @@ export default function Process() {
           </div>
         </div>
 
-        <div className="mt-10 flex justify-center md:mt-14">
+        {/* <div className="mt-10 flex justify-center md:mt-14">
           <div className="h-2 w-2 rounded-full border border-white/30 bg-white/20" />
-        </div>
+        </div> */}
       </div>
 
       <Sheet open={sheetOpen} onOpenChange={setSheetOpen}>

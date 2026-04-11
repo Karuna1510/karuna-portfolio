@@ -115,7 +115,7 @@ export default function Footer() {
         </div>
       </div>
 
-      <div className="bg-[#f0f0ee] text-zinc-800">
+      <div className="bg-[#f0f0ee] text-zinc-800" data-cursor-theme="light">
         <div className="container-custom px-4 py-12 md:px-6 md:py-14 lg:px-8">
           <div className="grid grid-cols-1 gap-10 sm:grid-cols-2 lg:grid-cols-3 lg:items-start lg:gap-10 xl:gap-14">
             {/* Quick links */}

@@ -214,7 +214,7 @@ export default function ChatWidget() {
                   <Bot className="h-4 w-4" />
                 </div>
                 <div>
-                  <h3 className="font-semibold">Karuna's Assistant</h3>
+                  <h3 className="font-semibold">Portfolio Assistant</h3>
                   <p className="text-xs opacity-90">Ask me anything!</p>
                 </div>
               </div>

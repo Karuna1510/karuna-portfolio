@@ -9,12 +9,12 @@ const projects = [
     category: 'Marketing Website • Intuit',
     role: 'Senior Software Developer',
     description:
-      'Built and enhanced high-traffic, customer-facing experiences on mailchimp.com with React, JavaScript, and SCSS, with growing TypeScript adoption—plus experimentation, INP optimization, and Playwright E2E coverage.',
+      'Built and shipped customer-facing features on the Mailchimp dotcom platform using React, TypeScript, SCSS, and Contentful CMS. Resolved INP and LCP bottlenecks on mobile, improving both Web Vitals by 35–40%. Launched A/B experiments across key user journeys, modernized components against the design system, and maintained Playwright E2E coverage to reduce regressions across frequent releases.',
     metrics: [
-      { label: 'Experimentation', value: 'A/B & INP' },
-      { label: 'Quality', value: 'Playwright E2E' },
+      { label: 'INP + LCP improvement', value: '35–40%' },
+      { label: 'Test coverage', value: 'Playwright E2E' },
     ],
-    tech: ['React', 'TypeScript', 'JavaScript', 'SCSS', 'Playwright'],
+    tech: ['React', 'TypeScript', 'SCSS', 'Contentful CMS', 'Playwright', 'A/B Testing', 'Web Vitals'],
     icon: Mail,
   },
   {
@@ -117,10 +117,10 @@ export default function Projects() {
                 <div className="flex flex-col gap-6 lg:flex-row lg:items-start">
                   <div className="min-w-0 flex-1">
                     <div className="mb-4 flex items-start gap-4">
-                      <span className="font-mono text-3xl font-black leading-none text-foreground/10">
+                      <span className="shrink-0 font-mono text-3xl font-black leading-none text-foreground/10">
                         {project.number}
                       </span>
-                      <div>
+                      <div className="min-w-0">
                         <h3 className="text-xl font-bold text-foreground transition-colors group-hover:text-primary">
                           {project.title}
                         </h3>
@@ -140,7 +140,7 @@ export default function Projects() {
                       ))}
                     </div>
                   </div>
-                  <div className="flex gap-3 sm:gap-4 lg:min-w-[180px] lg:flex-col lg:gap-3">
+                  <div className="flex gap-3 sm:gap-4 lg:min-w-[160px] lg:flex-col lg:gap-3">
                     {project.metrics.map((metric) => (
                       <div
                         key={metric.label}

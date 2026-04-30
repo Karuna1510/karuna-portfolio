@@ -19,8 +19,12 @@ import { EntrancesReadyProvider } from "@/context/EntrancesReadyContext";
 
 const queryClient = new QueryClient();
 
-/** Initial splash duration before hero/nav entrances (exit fade adds ~0.4s). */
-const SPLASH_MS = 1200;
+/**
+ * Last strip lands at ~2750ms. Fire at 2400ms so the hero starts animating
+ * while the last strip is still covering — the 0.4s exit fade then reveals
+ * the hero already in motion with no visible gap.
+ */
+const SPLASH_MS = 1400;
 
 const App = () => {
   const [showSplash, setShowSplash] = useState(true);
